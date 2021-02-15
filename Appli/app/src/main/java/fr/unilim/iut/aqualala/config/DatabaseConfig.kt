@@ -1,4 +1,4 @@
-package fr.unilim.iut.aqualala.commons
+package fr.unilim.iut.aqualala.config
 
 const val ADRESSE_DB = "xiangyu-an.fr"
 const val PORT_DB = "3306"
