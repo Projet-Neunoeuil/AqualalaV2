@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.unilim.iut.aqualala">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/neunoeil"
@@ -9,7 +10,7 @@
         android:roundIcon="@mipmap/neunoeil_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AqualalaV2">
-        <activity android:name=".Temperature"/>
+        <activity android:name=".TemperatureController"/>
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

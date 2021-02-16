@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/fond"
     android:visibility="visible"
-    tools:context=".Temperature">
+    tools:context=".TemperatureController">
 
     <TextView
         android:id="@+id/titreTemperature"
@@ -27,6 +27,7 @@
         android:layout_height="139dp"
         android:ems="10"
         android:gravity="center"
+        android:text="@string/valeurTemperature"
         android:textSize="80sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +35,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.265" />
 
     <TextView
         android:id="@+id/temps"
@@ -52,9 +53,10 @@
 
     <TextView
         android:id="@+id/erreur"
-        android:layout_width="147dp"
-        android:layout_height="42dp"
+        android:layout_width="253dp"
+        android:layout_height="129dp"
         android:layout_marginBottom="8dp"
+        android:text="@string/erreur"
         android:textColor="@color/rose_pastel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

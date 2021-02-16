@@ -7,4 +7,6 @@
     <string name="default_info_temp">La température est</string>
     <string name="btnCourbesEvolution">Voir courbes d\'évolution</string>
     <string name="tempsTemperature">Température mesurée à</string>
+    <string name="erreur">Erreur</string>
+    <string name="valeurTemperature">0°C</string>
 </resources>
