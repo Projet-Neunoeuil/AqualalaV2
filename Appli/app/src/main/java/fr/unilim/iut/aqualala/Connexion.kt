@@ -13,13 +13,13 @@ class Connexion constructor(){
      */
     fun connectionBD() : Statement {
         Class.forName("com.mysql.jdbc.Driver").newInstance()
-        val connexion = DriverManager.getConnection(
+        var conn = DriverManager.getConnection(
                 //jdbc:mysql://<IP>:<port>/<nom de la base>
                 "jdbc:mysql://${ADRESSE_DB}:${PORT_DB}/${NOM_DB}",
                 NOM_UTILISATEUR,
                 MOT_DE_PASSE
         )
-        return connexion.createStatement() // Que veux dire createStatement?
+        return conn.createStatement() // Que veux dire createStatement?
     }
 
     /**
@@ -29,6 +29,8 @@ class Connexion constructor(){
      * @return A resultSet containing the query results
      */
     fun recupererDonnees(requete: String): ResultSet {
-        return connectionBD().executeQuery(requete)
+        val rs = connectionBD().executeQuery(requete)
+        connectionBD().close()
+        return rs
     }
 }

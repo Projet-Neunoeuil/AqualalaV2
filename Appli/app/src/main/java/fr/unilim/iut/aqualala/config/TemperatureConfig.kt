@@ -11,4 +11,4 @@ const val MIN_TEMP = 22
 //      FinSi
 // FinSi
 
-const val TIME_SECOND_REFRESH: Long = 3000
+const val TIME_SECOND_REFRESH: Long = 5000
