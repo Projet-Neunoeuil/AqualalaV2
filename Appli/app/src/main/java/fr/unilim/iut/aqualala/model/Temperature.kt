@@ -1,27 +1,35 @@
 package fr.unilim.iut.aqualala.model
 
-import android.util.Log
-import androidx.core.content.ContextCompat
-import fr.unilim.iut.aqualala.R
-import fr.unilim.iut.aqualala.config.MIN_TEMP
-
-class Temperature (var valeur: Double, var tempsMesure: String, var estDansLaLimite: Boolean) {
+class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperature: Double, var minTemperature: Double) {
     //afficher l'initialisation
+
     init {
-        Log.d("TEMPERATURE",
-            "Température = $valeur\n" +
-                "Temps = $tempsMesure\n" +
-                "Validité de température = $estDansLaLimite")
+        //C'est très rare qu'on utilise Log.d dans la méthode init, on utilise souvent println -----to Marie
+        println("TEMPERATURE :")
+        println("Température = $valeur")
+        println("Temps = $tempsMesure")
+        println("Maximum de température = $maxTemperature")
+        println(" Minimum de température = $minTemperature")
+    }
+
+    fun estDansLaLimite():Int{
+        when (valeur) {
+            in  minTemperature..maxTemperature -> return 0
+            in  0.00..minTemperature -> return 1
+            else -> return 2
+        }
     }
 
     //retourner la validité de la température
     fun commentaireSurLaValiditeTemperature(): String{
-        if (!estDansLaLimite) {
-            if (valeur < MIN_TEMP) return "La température est anormalement basse"
-            return "La température est anormalement élevée"
-        }else return "La température est idéale"
+        when (estDansLaLimite()) {
+            0  -> return "La température est idéale"
+            1 -> return "La température est anormalement basse"
+            else -> return "La température est anormalement élevée"
+        }
     }
 
+    //Changer le temps (aaaa-mm-jj hh:mm:ss) en (mm:ss)
     fun recupererHeuresEtMinutes() : String{
         //aaaa-mm-jj hh:mm:ss
         val dateTemps=tempsMesure.split(" ")
@@ -29,15 +37,5 @@ class Temperature (var valeur: Double, var tempsMesure: String, var estDansLaLim
         //hh:mm:ss
         val heureMinute=temps.split(":")
         return "Température mesurée à ${heureMinute[0]} : ${heureMinute[1]}"
-    }
-
-    /**
-     * throws the color dependant of the temperature range
-     *
-     * @return a correct colorcode to set text color
-     */
-    fun couleurSelonValidite(): Int {
-        if (estDansLaLimite) return R.color.vert
-        return R.color.rose_pastel;
     }
 }

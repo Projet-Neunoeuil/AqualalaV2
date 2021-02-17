@@ -6,7 +6,6 @@ import android.os.Looper
 import android.util.Log
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import fr.unilim.iut.aqualala.Connexion
 import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
 import java.util.concurrent.Executors
@@ -14,18 +13,25 @@ import java.util.concurrent.Executors
 class Async constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
-    var requete = "SELECT value, time, inRange FROM Temperature ORDER BY time DESC"
+    var requeteTempratureTemps = "SELECT value, time FROM Temperature ORDER BY time DESC ;"
+    var requeteMaxMinTemprature = "SELECT  minTemp, maxTemp FROM Parameters ;"
     var erreurDesDonnees = ""
     val handler = Handler(Looper.getMainLooper())
 
     fun execute() {
         executor.execute {
             try {
-                var resultatRecup = bd.recupererDonnees(requete)
-                if (resultatRecup.next()) {
-                    temperature.valeur = resultatRecup.getDouble("value")
-                    temperature.tempsMesure = resultatRecup.getString("time")
-                    temperature.estDansLaLimite = resultatRecup.getBoolean("inRange")
+                var resultatRecupTempratureTemps = bd.recupererDonnees(requeteTempratureTemps)
+                var resultatRecupMaxMinTemprature = bd.recupererDonnees(requeteMaxMinTemprature)
+
+                if (resultatRecupTempratureTemps.next()) {
+                    temperature.valeur = resultatRecupTempratureTemps.getDouble("value")
+                    temperature.tempsMesure = resultatRecupTempratureTemps.getString("time")
+                }
+
+                if (resultatRecupMaxMinTemprature.next()) {
+                    temperature.maxTemperature = resultatRecupMaxMinTemprature.getDouble("maxTemp")
+                    temperature.minTemperature = resultatRecupMaxMinTemprature.getDouble("minTemp")
                 }
             } catch (e: Exception) {
                 erreurDesDonnees = e.toString()
@@ -55,8 +61,8 @@ class Async constructor(var temperature: Temperature, var msgErreurView : TextVi
         changerCouleurTexte(temperature)
     }
 
-    private fun changerCouleurTexte(temp: Temperature) {
-        if(temp.estDansLaLimite) {
+    private fun changerCouleurTexte(temperature: Temperature) {
+        if(temperature.estDansLaLimite()==0) {
             commentaireView!!.setTextColor(ContextCompat.getColor(context, R.color.vert))
             valeurView!!.setTextColor(ContextCompat.getColor(context, R.color.vert))
         } else {

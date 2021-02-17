@@ -1,4 +1,4 @@
-package fr.unilim.iut.aqualala
+package fr.unilim.iut.aqualala.model
 
 import fr.unilim.iut.aqualala.config.*
 import java.sql.DriverManager
@@ -19,7 +19,7 @@ class Connexion constructor(){
                 NOM_UTILISATEUR,
                 MOT_DE_PASSE
         )
-        return conn.createStatement() // Que veux dire createStatement?
+        return conn.createStatement()
     }
 
     /**

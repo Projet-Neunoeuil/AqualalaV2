@@ -22,7 +22,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.imageThermo, R.id.temperatureTexte -> {
-                val intent = Intent(this@MainMenu, TemperatureController::class.java)
+                val intent = Intent(this@MainMenu, TemperatureControlleur::class.java)
                 startActivity(intent)
             }
         }

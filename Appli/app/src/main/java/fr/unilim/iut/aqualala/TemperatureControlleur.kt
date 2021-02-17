@@ -1,6 +1,5 @@
 package fr.unilim.iut.aqualala;
 
-
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,21 +12,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import fr.unilim.iut.aqualala.config.TIME_SECOND_REFRESH
 import fr.unilim.iut.aqualala.model.Async
 import fr.unilim.iut.aqualala.model.Temperature
-
 
 /**
 * The class linked to the Temperature xml
 * @since 1.0.2
 **/
 
-class TemperatureController : AppCompatActivity() {
+class TemperatureControlleur : AppCompatActivity() {
     private val notificationId = 1
     private val CHANNEL_ID = "1"
     lateinit var wakeLock: PowerManager.WakeLock
-    var temperature = Temperature(0.0, "", false)
+    var temperature = Temperature(0.00, "",0.00,0.00)
     lateinit var valeurView: TextView
     lateinit var commentaireView: TextView
     lateinit var tempsView: TextView
@@ -68,7 +65,7 @@ class TemperatureController : AppCompatActivity() {
                 asyncTemperature.execute()
                 createNotificationChannel()
                 sendNotification()
-                handler.postDelayed(this, TIME_SECOND_REFRESH)
+                handler.postDelayed(this, 5000)
             }
         }
         runnable.run()
@@ -106,7 +103,7 @@ class TemperatureController : AppCompatActivity() {
 
     private fun sendNotification() {
         // Ouvrir l'activité à partir de la notification
-        val intent = Intent(this, TemperatureController::class.java).apply {
+        val intent = Intent(this, TemperatureControlleur::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
