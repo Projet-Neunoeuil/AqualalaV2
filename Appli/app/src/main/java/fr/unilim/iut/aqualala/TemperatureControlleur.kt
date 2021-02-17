@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import fr.unilim.iut.aqualala.model.Async
+import fr.unilim.iut.aqualala.model.AsyncTemperature
 import fr.unilim.iut.aqualala.model.Temperature
 
 /**
@@ -51,7 +51,7 @@ class TemperatureControlleur : AppCompatActivity() {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
 
-        var asyncTemperature = Async(
+        var asyncTemperature = AsyncTemperature(
             temperature,
             msgErreurView,
             valeurView,

@@ -10,7 +10,7 @@ import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
 import java.util.concurrent.Executors
 
-class Async constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
+class AsyncTemperature constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
     var requeteTempratureTemps = "SELECT value, time FROM Temperature ORDER BY time DESC ;"
