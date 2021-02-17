@@ -15,4 +15,13 @@
     <string name="parametres">Paramètres</string>
     <string name="parametresTemperature">Température</string>
     <string name="parametresEclairage">Eclairage</string>
+    <string name="parametresTemperatureTitre">Paramètres Température</string>
+    <string name="valider">Valider</string>
+    <string name="retour">Retour</string>
+    <string name="minTemp">Min</string>
+    <string name="maxTemp">Max</string>
+    <string name="delaiRecup">Période</string>
+    <string name="parametresEclairageTitre">Paramètres Eclairage</string>
+    <string name="whiteTime">Lumière Blanche</string>
+    <string name="blueTime">Lumière Bleue</string>
 </resources>
