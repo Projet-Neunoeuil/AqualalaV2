@@ -12,4 +12,7 @@
     <string name="channel_name">Channel température</string>
     <string name="channel_description">Température notification description</string>
     <string name="alertTemperature">Alerte Température !</string>
+    <string name="parametres">Paramètres</string>
+    <string name="parametresTemperature">Température</string>
+    <string name="parametresEclairage">Eclairage</string>
 </resources>
