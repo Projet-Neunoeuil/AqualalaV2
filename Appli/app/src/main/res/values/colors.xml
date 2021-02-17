@@ -11,4 +11,6 @@
     <color name="orange">#F7A400</color>
     <color name="vert">#B6DF5D</color>
     <color name="rose_pastel">#E2685F</color>
+    <color name="fond_appli">#00BCD6</color>
+    <color name="poisson">#FFD20D</color>
 </resources>

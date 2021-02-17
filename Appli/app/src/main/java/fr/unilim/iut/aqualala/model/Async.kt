@@ -1,7 +1,6 @@
 package fr.unilim.iut.aqualala.model
 
 import android.content.Context
-import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -10,15 +9,15 @@ import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.Connexion
 import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
-import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-class AsyncTache constructor(val temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
+class Async constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
     var requete = "SELECT value, time, inRange FROM Temperature ORDER BY time DESC"
     var erreurDesDonnees = ""
     val handler = Handler(Looper.getMainLooper())
+
     fun execute() {
         executor.execute {
             try {
@@ -44,7 +43,6 @@ class AsyncTache constructor(val temperature: Temperature, var msgErreurView : T
                 //afficher la température sinon
                 else {
                     lierViewAvecTemperature(temperature)
-
                 }
             }
         }

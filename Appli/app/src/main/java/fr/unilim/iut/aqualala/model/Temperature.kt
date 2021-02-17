@@ -18,7 +18,7 @@ class Temperature (var valeur: Double, var tempsMesure: String, var estDansLaLim
     fun commentaireSurLaValiditeTemperature(): String{
         if (!estDansLaLimite) {
             if (valeur < MIN_TEMP) return "La température est anormalement basse"
-            else return "La température est anormalement élevée"
+            return "La température est anormalement élevée"
         }else return "La température est idéale"
     }
 

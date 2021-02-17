@@ -9,4 +9,7 @@
     <string name="tempsTemperature">Température mesurée à</string>
     <string name="erreur"></string>
     <string name="valeurTemperature">0°C</string>
+    <string name="channel_name">Channel température</string>
+    <string name="channel_description">Température notification description</string>
+    <string name="alertTemperature">Alerte Température !</string>
 </resources>
