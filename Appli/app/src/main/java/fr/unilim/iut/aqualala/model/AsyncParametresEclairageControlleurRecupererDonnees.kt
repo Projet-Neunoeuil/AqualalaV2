@@ -52,7 +52,11 @@ class AsyncParametresEclairageControlleurRecupererDonnees constructor(var parame
     }
 
     private fun lierViewAvecParametresTemperature(parametreEclairage: ParametreEclairage) {
-        whiteTime.setSelection(Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.whiteTime)))
+        whiteTime.post {
+            whiteTime.setSelection(Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.whiteTime)))
+        }
+        println("Heure blanche = ${Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.whiteTime))}")
+        //whiteTime.setSelection(16, true)
         blueTime.setSelection(Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.blueTime)))
     }
 }

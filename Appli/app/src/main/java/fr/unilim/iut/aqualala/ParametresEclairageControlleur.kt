@@ -21,12 +21,14 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         val btnRetourEclair = findViewById<Button>(R.id.btnRetourEclair)
         val array = Arrays()
         val listeHeure = array.listeHeure
-        var adapterHeure : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
-        adapterHeure.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        var adapterHeureBleu : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
+        adapterHeureBleu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        var adapterHeureBlanc : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
+        adapterHeureBlanc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         initialiserAvecView()
-        whiteTime.adapter = adapterHeure
-        blueTime.adapter = adapterHeure
+        whiteTime.adapter = adapterHeureBlanc
+        blueTime.adapter = adapterHeureBleu
 
         var asyncParametresEclairageControlleurRecupererDonnees = AsyncParametresEclairageControlleurRecupererDonnees(parametreEclair, whiteTime, blueTime, errParamEclair, this)
         asyncParametresEclairageControlleurRecupererDonnees.execute()
@@ -41,9 +43,15 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
                 parametreEclair.blueTime=blueTime.selectedItem.toString()
                 var asyncParametresEclairageControlleurEnvoyerDonnees = AsyncParametresEclairageControlleurEnvoyerDonnees(parametreEclair, errParamEclair, this)
                 asyncParametresEclairageControlleurEnvoyerDonnees.execute()
-                Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
-                startActivity(intent)
+                if(errParamEclair.text == "") {
+                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
+                    startActivity(intent)
+                } else
+                {
+                    Toast.makeText(this, errParamEclair.text, Toast.LENGTH_LONG).show()
+                }
+
             }
             R.id.btnRetourEclair -> {
                 val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)

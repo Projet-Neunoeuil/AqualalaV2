@@ -3,6 +3,8 @@ package fr.unilim.iut.aqualala
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
 import fr.unilim.iut.aqualala.model.Arrays
@@ -51,11 +53,24 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                 parametreTemperature.minTemp=minTemp.selectedItem.toString().toDouble()
                 parametreTemperature.maxTemp=maxTemp.selectedItem.toString().toDouble()
                 parametreTemperature.periode=periode.selectedItem.toString().toInt()
+                if(parametreTemperature.minTemp >= parametreTemperature.maxTemp) {
+                    var tmp = parametreTemperature.maxTemp
+                    parametreTemperature.maxTemp =parametreTemperature.minTemp
+                    parametreTemperature.minTemp = tmp
+                    Toast.makeText(this, "Les données ont été inversée pour rester cohérentes", Toast.LENGTH_SHORT).show()
+                }
                 var asyncParametresTemperatureControlleurEnvoyerDonnees = AsyncParametresTemperatureControlleurEnvoyerDonnees(parametreTemperature, errParamTemp, this)
                 asyncParametresTemperatureControlleurEnvoyerDonnees.execute()
-                Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
-                startActivity(intent)
+
+                if(errParamTemp.text == "") {
+                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed(Runnable { startActivity(intent) }, 3000)
+                } else
+                {
+                    Toast.makeText(this, errParamTemp.text, Toast.LENGTH_LONG).show()
+                }
             }
             R.id.btnRetourTemp -> {
                 val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)

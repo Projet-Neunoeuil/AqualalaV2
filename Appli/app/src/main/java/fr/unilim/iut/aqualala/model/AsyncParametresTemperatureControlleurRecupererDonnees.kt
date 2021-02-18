@@ -55,7 +55,6 @@ class AsyncParametresTemperatureControlleurRecupererDonnees constructor(var para
 
     private fun lierViewAvecParametresTemperature(parametreTemperature: ParametreTemperature) {
         minTemp.setSelection(Arrays().listeTemperature.indexOf("${parametreTemperature.minTemp.roundToInt()}"))
-        println("MinTemp = ${parametreTemperature.minTemp.roundToInt()}")
         maxTemp.setSelection(Arrays().listeTemperature.indexOf("${parametreTemperature.maxTemp.roundToInt()}"))
         periode.setSelection(Arrays().listeDelai.indexOf(parametreTemperature.periode.toString()))
     }

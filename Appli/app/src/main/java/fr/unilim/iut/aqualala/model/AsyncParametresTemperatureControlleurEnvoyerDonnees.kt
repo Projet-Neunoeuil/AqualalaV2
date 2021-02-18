@@ -19,6 +19,7 @@ class AsyncParametresTemperatureControlleurEnvoyerDonnees constructor(var parame
     val handler = Handler(Looper.getMainLooper())
 
     fun execute() {
+
         executor.execute {
             try {
                 bd.connectionBD().executeUpdate(requeteParametre)
