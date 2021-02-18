@@ -10,13 +10,14 @@ import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
 import java.util.concurrent.Executors
 
-class AsyncTemperature constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var periode: Int,var context: Context){
+class AsyncTemperature {
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
-    var requeteTempratureTemps = "SELECT value, time FROM Temperature ORDER BY time DESC ;"
-    var requeteMaxMinTemprature = "SELECT  minTemp, maxTemp, period FROM Parameters ;"
-    var erreurDesDonnees = ""
+    val requeteTempratureTemps = "SELECT value, time FROM Temperature ORDER BY time DESC ;"
+    val requeteMaxMinTemprature = "SELECT  minTemp, maxTemp, period FROM Parameters ;"
+    var erreurDesDonnees: String = ""
     val handler = Handler(Looper.getMainLooper())
+    var temperature = Temperature(0.00,"00 00:00:00",0.00,0.00,1)
 
     fun execute() {
         executor.execute {
@@ -41,35 +42,6 @@ class AsyncTemperature constructor(var temperature: Temperature, var msgErreurVi
             } catch (e: ClassNotFoundException) {
                 erreurDesDonnees = e.toString()
             }
-            handler.post {
-                //afficher message erreur si erreur de récupération de données
-                if (erreurDesDonnees !== "") {
-                    msgErreurView!!.text = erreurDesDonnees
-                    Log.d("ERREUR", erreurDesDonnees)
-                }
-                //afficher la température sinon
-                else {
-                    lierViewAvecTemperature(temperature)
-                }
-            }
-        }
-    }
-
-    private fun lierViewAvecTemperature(temperature: Temperature) {
-        valeurView!!.text = temperature.valeur.toString() + "°C"
-        tempsView!!.text = temperature.recupererHeuresEtMinutes()
-        commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature()
-        periode=temperature.periodeEnMinute
-        changerCouleurTexte(temperature)
-    }
-
-    private fun changerCouleurTexte(temperature: Temperature) {
-        if(temperature.estDansLaLimite()==0) {
-            commentaireView!!.setTextColor(ContextCompat.getColor(context, R.color.vert))
-            valeurView!!.setTextColor(ContextCompat.getColor(context, R.color.vert))
-        } else {
-            commentaireView!!.setTextColor(ContextCompat.getColor(context, R.color.rose_pastel))
-            valeurView!!.setTextColor(ContextCompat.getColor(context, R.color.rose_pastel))
         }
     }
 }

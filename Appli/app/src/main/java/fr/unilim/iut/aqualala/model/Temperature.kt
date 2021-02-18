@@ -1,10 +1,13 @@
 package fr.unilim.iut.aqualala.model
 
-class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperature: Double, var minTemperature: Double, var periodeEnMinute: Int) {
+const val IDEALE = 0
+const val BASSE = 1
+const val HAUTE = 2
+
+class Temperature constructor(var valeur: Double, var tempsMesure: String, var maxTemperature: Double, var minTemperature: Double, var periodeEnMinute: Int) {
     //afficher l'initialisation
 
     init {
-        //C'est très rare qu'on utilise Log.d dans la méthode init, on utilise souvent println -----to Marie
         println("TEMPERATURE :")
         println("Température = $valeur")
         println("Temps = $tempsMesure")
@@ -15,17 +18,17 @@ class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperatu
 
     fun estDansLaLimite():Int{
         when (valeur) {
-            in  minTemperature..maxTemperature -> return 0
-            in  0.00..minTemperature -> return 1
-            else -> return 2
+            in  minTemperature..maxTemperature -> return IDEALE
+            in  0.00..minTemperature -> return BASSE
+            else -> return HAUTE
         }
     }
 
     //retourner la validité de la température
     fun commentaireSurLaValiditeTemperature(): String{
         when (estDansLaLimite()) {
-            0  -> return "La température est idéale"
-            1 -> return "La température est anormalement basse"
+            IDEALE  -> return "La température est idéale"
+            BASSE -> return "La température est anormalement basse"
             else -> return "La température est anormalement élevée"
         }
     }

@@ -15,7 +15,6 @@
         <activity android:name=".ParametresEclairageControlleur"></activity>
         <activity android:name=".ParametresTemperatureControlleur" />
         <activity android:name=".ParametresControlleur" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".TemperatureControlleur" />
         <activity android:name=".MainMenu">
             <intent-filter>
