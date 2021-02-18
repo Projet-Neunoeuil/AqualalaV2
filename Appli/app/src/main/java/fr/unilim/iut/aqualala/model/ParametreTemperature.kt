@@ -8,5 +8,6 @@ class ParametreTemperature constructor(var minTemp: Double, var maxTemp: Double,
         println("minTemp = $minTemp °C" )
         println("maxTemp = $maxTemp °C")
         println("periode = $periode minute(s)")
+        println("Temperature = $minTemp")
     }
 }

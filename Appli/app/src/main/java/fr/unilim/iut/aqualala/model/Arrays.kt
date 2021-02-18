@@ -8,11 +8,9 @@ class Arrays {
     init {
         for (i in 10..50) {
             listeTemperature.add(i.toString())
-            println("$i ajouté à température")
         }
         for (i in 1..60) {
             listeDelai.add(i.toString())
-            println("$i ajouté à délai")
         }
 
         //Matin

@@ -5,13 +5,15 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
 import java.util.concurrent.Executors
+import kotlin.math.roundToInt
 
-class AsyncParametresTemperatureControlleurRecupererDonnees constructor(var parametreTemperature: ParametreTemperature, var minTemp: EditText, var maxTemp : EditText, var periode : EditText, var errParamTemp: TextView, var context: Context){
+class AsyncParametresTemperatureControlleurRecupererDonnees constructor(var parametreTemperature: ParametreTemperature, var minTemp: Spinner, var maxTemp : Spinner, var periode : Spinner, var errParamTemp: TextView, var context: Context){
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
     var requeteParametre = "SELECT minTemp, maxTemp, period FROM Parameters ;"
@@ -52,8 +54,9 @@ class AsyncParametresTemperatureControlleurRecupererDonnees constructor(var para
     }
 
     private fun lierViewAvecParametresTemperature(parametreTemperature: ParametreTemperature) {
-        minTemp!!.setText(parametreTemperature.minTemp.toString())
-        maxTemp!!.setText(parametreTemperature.maxTemp.toString())
-        periode!!.setText(parametreTemperature.periode.toString())
+        minTemp.setSelection(Arrays().listeTemperature.indexOf("${parametreTemperature.minTemp.roundToInt()}"))
+        println("MinTemp = ${parametreTemperature.minTemp.roundToInt()}")
+        maxTemp.setSelection(Arrays().listeTemperature.indexOf("${parametreTemperature.maxTemp.roundToInt()}"))
+        periode.setSelection(Arrays().listeDelai.indexOf(parametreTemperature.periode.toString()))
     }
 }
