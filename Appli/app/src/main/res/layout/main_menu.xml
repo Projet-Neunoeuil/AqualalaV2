@@ -10,6 +10,7 @@
     tools:context=".MainMenu">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -27,15 +28,16 @@
         <FrameLayout
             android:id="@+id/menu_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="match_parent" >
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_header"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/menu_latteral" />
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/nav_header"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:menu="@menu/menu_latteral" />
+        </FrameLayout>
+    </LinearLayout>
 
 
     <TextView
