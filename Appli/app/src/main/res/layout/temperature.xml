@@ -8,6 +8,8 @@
     android:visibility="visible"
     tools:context=".TemperatureControlleur">
 
+
+
     <TextView
         android:id="@+id/titreTemperature"
         android:layout_width="wrap_content"
@@ -81,11 +83,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="239dp"
-        android:layout_height="63dp"
+        android:layout_width="251dp"
+        android:layout_height="67dp"
         android:layout_marginBottom="36dp"
-        android:background="@color/orange"
         android:text="@string/btnCourbesEvolution"
+        android:background="@drawable/arrondir"
         android:textColor="@color/black"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,5 +95,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperatureValeur"
         app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
