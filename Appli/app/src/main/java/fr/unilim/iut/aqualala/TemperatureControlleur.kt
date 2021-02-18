@@ -9,6 +9,7 @@ import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -43,7 +44,9 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.temperature)
 
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        val btn_courbes = findViewById<Button>(R.id.btn_courbes)
         btnNeunoeil.setOnClickListener(this)
+        btn_courbes.setOnClickListener(this)
 
         wakeLock =
             (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
@@ -163,10 +166,10 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
-            //R.id.btn_courbes -> {
-                // val intent = Intent(this@TemperatureControlleur, <ClasseMenuCourbes>::class.java)
-                // startActivity(intent)
-            //}
+            R.id.btn_courbes -> {
+                val intent = Intent(this@TemperatureControlleur, CourbesTempMenu::class.java)
+                startActivity(intent)
+            }
             R.id.neunoeil -> {
                 val intent = Intent(this@TemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)

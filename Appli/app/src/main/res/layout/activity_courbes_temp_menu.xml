@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CourbesTempMenu"
+    android:background="@color/fond">
+
+     <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/orange"
+            android:elevation="4dp"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+        <FrameLayout
+            android:id="@+id/menu_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/neunoeil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/neunoeil" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/choix"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCourbeTempJour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="252dp"
+        android:background="@drawable/arrondir"
+        android:text="@string/jour"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCourbeTempSemaine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="384dp"
+        android:text="@string/semaine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/arrondir"
+        app:backgroundTint="@color/orange"
+        android:textColor="@color/black"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
