@@ -73,7 +73,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     }
     fun initialiserAvecView(){
         whiteTime = findViewById(R.id.heureBlanc)
-        blueTime = findViewById(R.id.heureBleu)
+        blueTime = findViewById(R.id.derniereDate)
         errParamEclair = findViewById(R.id.errParamEclair)
     }
 }
