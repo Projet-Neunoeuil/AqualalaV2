@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnValiderTemp"
+        android:id="@+id/btnValiderEclair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/btnRetourTemp"
+        android:id="@+id/btnRetourEclair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
@@ -46,7 +46,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+
+
+    <Spinner
         android:id="@+id/heureBlanc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +58,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/heureBleu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
