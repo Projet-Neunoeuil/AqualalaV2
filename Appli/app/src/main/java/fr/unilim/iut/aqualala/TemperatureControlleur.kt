@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,11 +25,12 @@ class TemperatureControlleur : AppCompatActivity() {
     private val notificationId = 1
     private val CHANNEL_ID = "1"
     lateinit var wakeLock: PowerManager.WakeLock
-    var temperature = Temperature(0.00, "",0.00,0.00,1)
+    var temperature = Temperature(0.00,"00 00:00:00",0.00,0.00,1)
     lateinit var valeurView: TextView
     lateinit var commentaireView: TextView
     lateinit var tempsView: TextView
     lateinit var msgErreurView: TextView
+
     var periode=1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,29 +44,32 @@ class TemperatureControlleur : AppCompatActivity() {
                 }
             }
 
-        lierAvecView()
+        initView()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
                 window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
 
-        var asyncTemperature = AsyncTemperature(
-            temperature,
-            msgErreurView,
-            valeurView,
-            tempsView,
-            commentaireView,
-            periode,
-            this
-        )
+        var asyncTemperature = AsyncTemperature()
         var handler : Handler = Handler(Looper.getMainLooper())
         val runnable: Runnable = object : Runnable {
             override fun run() {
                 asyncTemperature.execute()
+                asyncTemperature.handler.post {
+                    if (asyncTemperature.erreurDesDonnees !== "") {
+                        msgErreurView!!.text = asyncTemperature.erreurDesDonnees
+                        Log.d("ERREUR", asyncTemperature.erreurDesDonnees )
+                    }else {
+                        temperature = asyncTemperature.temperature
+                        lierViewAvecTemperature(temperature)
+                    }
+                }
                 createNotificationChannel()
-                sendNotification()
-                handler.postDelayed(this, periode*60*1000.toLong())
+                if (temperature.estDansLaLimite()!=0) {
+                    sendNotification()
+                }
+                handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
             }
         }
         runnable.run()
@@ -83,7 +88,7 @@ class TemperatureControlleur : AppCompatActivity() {
         wakeLock.release()
     }
 
-    fun lierAvecView(){
+    fun initView(){
         valeurView = findViewById(R.id.temperatureValeur)
         commentaireView = findViewById(R.id.commentaireTemperature)
         tempsView = findViewById(R.id.temps)
@@ -125,6 +130,25 @@ class TemperatureControlleur : AppCompatActivity() {
         with(NotificationManagerCompat.from(this)) {
             // notificationId is a unique int for each notification that you must define
             notify(notificationId, notification.build())
+        }
+    }
+
+
+    private fun lierViewAvecTemperature(temperature: Temperature) {
+        valeurView!!.text = temperature.valeur.toString() + "°C"
+        tempsView!!.text = temperature.recupererHeuresEtMinutes()
+        commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature()
+        periode=temperature.periodeEnMinute
+        changerCouleurTexte(temperature)
+    }
+
+    private fun changerCouleurTexte(temperature: Temperature) {
+        if(temperature.estDansLaLimite()==0) {
+            commentaireView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
+            valeurView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
+        } else {
+            commentaireView!!.setTextColor(ContextCompat.getColor(this, R.color.rose_pastel))
+            valeurView!!.setTextColor(ContextCompat.getColor(this, R.color.rose_pastel))
         }
     }
 }
