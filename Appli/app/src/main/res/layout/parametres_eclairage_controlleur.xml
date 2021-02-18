@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParametresElairageControlleur"
+    tools:context=".ParametresEclairageControlleur"
     android:background="@color/fond">
 
     <TextView
@@ -46,8 +46,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/minTemp"
+    <EditText
+        android:id="@+id/heureBlanc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="288dp"
@@ -56,8 +56,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/maxTemp"
+    <EditText
+        android:id="@+id/heureBleu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="276dp"
@@ -69,10 +69,10 @@
     <TextView
         android:id="@+id/errParamEclair"
         android:layout_width="0dp"
-        android:layout_height="14dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginLeft="192dp"
-        android:layout_marginBottom="256dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="264dp"
         android:text="@string/erreur"
         android:textColor="@color/rose_pastel"
         app:layout_constraintBottom_toBottomOf="parent"

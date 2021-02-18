@@ -24,11 +24,12 @@ class TemperatureControlleur : AppCompatActivity() {
     private val notificationId = 1
     private val CHANNEL_ID = "1"
     lateinit var wakeLock: PowerManager.WakeLock
-    var temperature = Temperature(0.00, "",0.00,0.00)
+    var temperature = Temperature(0.00, "",0.00,0.00,1)
     lateinit var valeurView: TextView
     lateinit var commentaireView: TextView
     lateinit var tempsView: TextView
     lateinit var msgErreurView: TextView
+    var periode=1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +42,7 @@ class TemperatureControlleur : AppCompatActivity() {
                 }
             }
 
-        valeurView = findViewById(R.id.temperatureValeur)
-        commentaireView = findViewById(R.id.commentaireTemperature)
-        tempsView = findViewById(R.id.temps)
-        msgErreurView = findViewById(R.id.erreur)
+        lierAvecView()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
@@ -57,6 +55,7 @@ class TemperatureControlleur : AppCompatActivity() {
             valeurView,
             tempsView,
             commentaireView,
+            periode,
             this
         )
         var handler : Handler = Handler(Looper.getMainLooper())
@@ -65,7 +64,7 @@ class TemperatureControlleur : AppCompatActivity() {
                 asyncTemperature.execute()
                 createNotificationChannel()
                 sendNotification()
-                handler.postDelayed(this, 5000)
+                handler.postDelayed(this, periode*60*1000.toLong())
             }
         }
         runnable.run()
@@ -82,6 +81,13 @@ class TemperatureControlleur : AppCompatActivity() {
         )
 
         wakeLock.release()
+    }
+
+    fun lierAvecView(){
+        valeurView = findViewById(R.id.temperatureValeur)
+        commentaireView = findViewById(R.id.commentaireTemperature)
+        tempsView = findViewById(R.id.temps)
+        msgErreurView = findViewById(R.id.erreur)
     }
 
     private fun createNotificationChannel() {
