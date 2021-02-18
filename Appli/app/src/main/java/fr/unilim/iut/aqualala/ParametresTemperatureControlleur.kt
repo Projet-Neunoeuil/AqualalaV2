@@ -1,12 +1,14 @@
 package fr.unilim.iut.aqualala
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.model.Arrays
 import fr.unilim.iut.aqualala.model.AsyncParametresTemperatureControlleurEnvoyerDonnees
 import fr.unilim.iut.aqualala.model.AsyncParametresTemperatureControlleurRecupererDonnees
@@ -21,8 +23,13 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
+            window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
+        }
         setContentView(R.layout.parametres_temperature_controlleur)
-
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        btnNeunoeil.setOnClickListener(this)
         val btnValiderTemp = findViewById<Button>(R.id.btnValiderTemp)
         val btnRetourTemp = findViewById<Button>(R.id.btnRetourTemp)
         val array = Arrays()
@@ -74,6 +81,10 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
             }
             R.id.btnRetourTemp -> {
                 val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
+                startActivity(intent)
+            }
+            R.id.neunoeil -> {
+                val intent = Intent(this@ParametresTemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)
             }
         }

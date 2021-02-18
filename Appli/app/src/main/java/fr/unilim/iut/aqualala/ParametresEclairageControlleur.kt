@@ -1,10 +1,12 @@
 package fr.unilim.iut.aqualala
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.model.*
 
 class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener   {
@@ -16,10 +18,16 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_eclairage_controlleur)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
+            window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
+        }
 
         val btnValiderEclair = findViewById<Button>(R.id.btnValiderEclair)
         val btnRetourEclair = findViewById<Button>(R.id.btnRetourEclair)
         val array = Arrays()
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        btnNeunoeil.setOnClickListener(this)
         val listeHeure = array.listeHeure
         var adapterHeureBleu : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
         adapterHeureBleu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -55,6 +63,10 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
             }
             R.id.btnRetourEclair -> {
                 val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
+                startActivity(intent)
+            }
+            R.id.neunoeil -> {
+                val intent = Intent(this@ParametresEclairageControlleur, MainMenu::class.java)
                 startActivity(intent)
             }
         }

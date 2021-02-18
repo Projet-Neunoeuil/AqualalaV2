@@ -7,12 +7,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.*
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import fr.unilim.iut.aqualala.model.AsyncParametresTemperatureControlleurEnvoyerDonnees
 import fr.unilim.iut.aqualala.model.AsyncTemperature
 import fr.unilim.iut.aqualala.model.Temperature
 
@@ -21,7 +25,7 @@ import fr.unilim.iut.aqualala.model.Temperature
 * @since 1.0.2
 **/
 
-class TemperatureControlleur : AppCompatActivity() {
+class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     private val notificationId = 1
     private val CHANNEL_ID = "1"
     lateinit var wakeLock: PowerManager.WakeLock
@@ -35,7 +39,11 @@ class TemperatureControlleur : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.temperature)
+
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        btnNeunoeil.setOnClickListener(this)
 
         wakeLock =
             (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
@@ -45,6 +53,7 @@ class TemperatureControlleur : AppCompatActivity() {
             }
 
         initView()
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
@@ -149,6 +158,19 @@ class TemperatureControlleur : AppCompatActivity() {
         } else {
             commentaireView!!.setTextColor(ContextCompat.getColor(this, R.color.rose_pastel))
             valeurView!!.setTextColor(ContextCompat.getColor(this, R.color.rose_pastel))
+        }
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            //R.id.btn_courbes -> {
+                // val intent = Intent(this@TemperatureControlleur, <ClasseMenuCourbes>::class.java)
+                // startActivity(intent)
+            //}
+            R.id.neunoeil -> {
+                val intent = Intent(this@TemperatureControlleur, MainMenu::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

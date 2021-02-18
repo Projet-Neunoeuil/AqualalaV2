@@ -30,29 +30,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_header"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                app:menu="@menu/menu_latteral" />
+
         </FrameLayout>
+
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/neunoeil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/neunoeil" />
 
     <TextView
         android:id="@+id/titreMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
         android:text="@string/titre_menu"
         android:textColor="@color/orange"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageThermo"
@@ -87,9 +93,9 @@
 
     <TextView
         android:id="@+id/lumiereTexte"
-        android:layout_width="78dp"
-        android:layout_height="36dp"
-        android:text="@string/lumiereTexte"
+        android:layout_width="123dp"
+        android:layout_height="35dp"
+        android:text="@string/paramTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,15 +108,15 @@
         android:id="@+id/imageLumiere"
         android:layout_width="82dp"
         android:layout_height="89dp"
-        android:background="@color/fond"
         android:clickable="true"
-        android:foreground="@drawable/ampoule"
+        android:foreground="@drawable/rouage"
+        android:background="@color/fond"
+        android:tint="@color/fond"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageThermo"
-        app:layout_constraintVertical_bias="0.394"
-        app:srcCompat="@drawable/ampoule" />
+        app:layout_constraintVertical_bias="0.394" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

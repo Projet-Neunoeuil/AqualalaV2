@@ -6,7 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".ParametresEclairageControlleur"
     android:background="@color/fond">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/orange"
+            android:elevation="4dp"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+        <FrameLayout
+            android:id="@+id/menu_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/neunoeil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/neunoeil" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -24,7 +60,8 @@
         android:id="@+id/btnValiderEclair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:background="@drawable/arrondir"
+        app:backgroundTint="@color/orange"
         android:text="@string/valider"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +74,8 @@
         android:id="@+id/btnRetourEclair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:background="@drawable/arrondir"
+        app:backgroundTint="@color/orange"
         android:text="@string/retour"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

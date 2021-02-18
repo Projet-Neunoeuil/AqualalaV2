@@ -2,7 +2,7 @@
     <string name="app_name">Aqualala</string>
     <string name="titre_menu">Menu</string>
     <string name="temperatureTexte">Température</string>
-    <string name="lumiereTexte">Lumière</string>
+    <string name="paramTexte">Paramètres</string>
     <string name="titre_temperature">Température de l\'eau</string>
     <string name="default_info_temp">La température est</string>
     <string name="btnCourbesEvolution">Voir courbes d\'évolution</string>
@@ -14,7 +14,7 @@
     <string name="alertTemperature">Alerte Température !</string>
     <string name="parametres">Paramètres</string>
     <string name="parametresTemperature">Température</string>
-    <string name="parametresEclairage">Eclairage</string>
+    <string name="parametresEclairage">éclairage</string>
     <string name="parametresTemperatureTitre">Paramètres Température</string>
     <string name="valider">Valider</string>
     <string name="retour">Retour</string>
