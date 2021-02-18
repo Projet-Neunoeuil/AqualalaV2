@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/neunoeil_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AqualalaV2">
-        <activity android:name=".ParametresEclairageControlleur"></activity>
+        <activity android:name=".model.ChangementEau"></activity>
+        <activity android:name=".ParametresEauControlleur" />
+        <activity android:name=".ParametresEclairageControlleur" />
         <activity android:name=".ParametresTemperatureControlleur" />
         <activity android:name=".ParametresControlleur" />
         <activity android:name=".TemperatureControlleur" />
