@@ -10,11 +10,11 @@ import fr.unilim.iut.aqualala.R
 import java.sql.SQLException
 import java.util.concurrent.Executors
 
-class AsyncTemperature constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var context: Context){
+class AsyncTemperature constructor(var temperature: Temperature, var msgErreurView : TextView, var valeurView : TextView, var tempsView : TextView, var commentaireView : TextView, var periode: Int,var context: Context){
     var executor = Executors.newSingleThreadExecutor()
     var bd = Connexion()
     var requeteTempratureTemps = "SELECT value, time FROM Temperature ORDER BY time DESC ;"
-    var requeteMaxMinTemprature = "SELECT  minTemp, maxTemp FROM Parameters ;"
+    var requeteMaxMinTemprature = "SELECT  minTemp, maxTemp, period FROM Parameters ;"
     var erreurDesDonnees = ""
     val handler = Handler(Looper.getMainLooper())
 
@@ -32,6 +32,7 @@ class AsyncTemperature constructor(var temperature: Temperature, var msgErreurVi
                 if (resultatRecupMaxMinTemprature.next()) {
                     temperature.maxTemperature = resultatRecupMaxMinTemprature.getDouble("maxTemp")
                     temperature.minTemperature = resultatRecupMaxMinTemprature.getDouble("minTemp")
+                    temperature.periodeEnMinute = resultatRecupMaxMinTemprature.getInt("period")
                 }
             } catch (e: Exception) {
                 erreurDesDonnees = e.toString()
@@ -58,6 +59,7 @@ class AsyncTemperature constructor(var temperature: Temperature, var msgErreurVi
         valeurView!!.text = temperature.valeur.toString() + "°C"
         tempsView!!.text = temperature.recupererHeuresEtMinutes()
         commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature()
+        periode=temperature.periodeEnMinute
         changerCouleurTexte(temperature)
     }
 

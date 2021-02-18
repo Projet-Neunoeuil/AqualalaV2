@@ -1,6 +1,6 @@
 package fr.unilim.iut.aqualala.model
 
-class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperature: Double, var minTemperature: Double) {
+class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperature: Double, var minTemperature: Double, var periodeEnMinute: Int) {
     //afficher l'initialisation
 
     init {
@@ -10,6 +10,7 @@ class Temperature (var valeur: Double, var tempsMesure: String, var maxTemperatu
         println("Temps = $tempsMesure")
         println("Maximum de température = $maxTemperature")
         println(" Minimum de température = $minTemperature")
+        println(" Période de raffraichir de température = $periodeEnMinute")
     }
 
     fun estDansLaLimite():Int{
