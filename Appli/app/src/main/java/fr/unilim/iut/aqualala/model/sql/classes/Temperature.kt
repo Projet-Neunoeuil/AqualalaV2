@@ -15,8 +15,8 @@ class Temperature (val valeur : Double, val date : Date) {
 
     fun obtenirChaleurEau(parametres: Parametres): Int {
         when(valeur){
-            in 10.0..parametres.minTemp -> return BASSE
-            in parametres.maxTemp..50.0 -> return HAUTE
+            in PLUS_BASSE_TEMPERATURE.toDouble()..parametres.minTemp -> return BASSE
+            in parametres.maxTemp..MAXMUM_RAFRACHIR_PAGE_TEMPERATURE.toDouble() -> return HAUTE
             else -> return IDEALE
         }
     }
