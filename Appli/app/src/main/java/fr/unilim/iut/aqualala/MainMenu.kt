@@ -40,14 +40,17 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
             R.id.imageThermo, R.id.temperatureTexte -> {
                 val intent = Intent(this@MainMenu, TemperatureControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.imageLumiere, R.id.lumiereTexte->{
                 val intent = Intent(this@MainMenu, ParametresControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.neunoeil-> {
                 val intent = Intent(this@MainMenu, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

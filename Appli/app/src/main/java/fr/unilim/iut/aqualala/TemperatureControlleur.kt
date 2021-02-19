@@ -173,6 +173,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
             R.id.neunoeil -> {
                 val intent = Intent(this@TemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

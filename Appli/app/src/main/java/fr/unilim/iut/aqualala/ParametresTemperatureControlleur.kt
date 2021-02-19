@@ -82,10 +82,12 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
             R.id.btnRetourTemp -> {
                 val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.neunoeil -> {
                 val intent = Intent(this@ParametresTemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

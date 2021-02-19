@@ -32,14 +32,17 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
             R.id.btnParamTemp -> {
                 val intent = Intent(this@ParametresControlleur, ParametresTemperatureControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.btnParamEclair -> {
                 val intent = Intent(this@ParametresControlleur, ParametresEclairageControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.neunoeil -> {
                 val intent = Intent(this@ParametresControlleur, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

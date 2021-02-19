@@ -64,10 +64,12 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
             R.id.btnRetourEclair -> {
                 val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.neunoeil -> {
                 val intent = Intent(this@ParametresEclairageControlleur, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }
