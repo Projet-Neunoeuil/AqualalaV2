@@ -12,7 +12,9 @@ import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import java.sql.DriverManager
+import java.util.*
 import java.util.concurrent.Executors
+import kotlin.collections.ArrayList
 
 class CourbeTempJour : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,7 @@ class CourbeTempJour : AppCompatActivity() {
             )
             var x = 0.0
             var datalist : ArrayList<DataPoint> = ArrayList()
+            var dateOf : HashMap<String, String> = HashMap()
             val rs = conn.createStatement().executeQuery("SELECT value FROM HourlyAverage ORDER BY hour ASC")
             while(rs.next()) {
                 var value = rs.getDouble("value")
@@ -53,7 +56,7 @@ class CourbeTempJour : AppCompatActivity() {
                     Toast.makeText(
                         getMyActivity(),
                         "La température est de ${dataPoint.y}°C",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show()
                 }
                 graph.addSeries(series)

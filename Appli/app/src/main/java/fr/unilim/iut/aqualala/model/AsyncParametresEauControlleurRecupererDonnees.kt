@@ -44,19 +44,19 @@ class AsyncParametresEauControlleurRecupererDonnees constructor(var parametreEau
                 }
                 //afficher la température sinon
                 else {
-                    lierViewAvecParametresTemperature(parametreEau)
+                    //lierViewAvecParametresTemperature(parametreEau)
                 }
             }
         }
     }
 
-    private fun lierViewAvecParametresTemperature(parametreEau: ParametreEau) {
+    /* private fun lierViewAvecParametresTemperature(parametreEau: ParametreEau) {
         parametreEau.prochainChangementEau()
         whiteTime.post {
-            whiteTime.setSelection(Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.whiteTime)))
+            whiteTime.setSelection(Arrays().listeHeure.indexOf(parametreEau.recupererMoisJour(parametreEau.frequenceChangementEau)))
         }
         println("Heure blanche = ${Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.whiteTime))}")
         //whiteTime.setSelection(16, true)
         blueTime.setSelection(Arrays().listeHeure.indexOf(parametreEclairage.recupererHeuresEtMinutes(parametreEclairage.blueTime)))
-    }
+    } */
 }
