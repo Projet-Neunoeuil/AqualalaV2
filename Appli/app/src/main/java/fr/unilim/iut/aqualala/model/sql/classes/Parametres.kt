@@ -10,5 +10,5 @@ class Parametres (val minTemp : Double,
                   val periodeGetTemp : Int,
                   val periodeChangeWater : Int
                   ) {
-    // Si ya des opérations, les mettres ici sous forme de fonction
+
 }

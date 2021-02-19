@@ -12,6 +12,7 @@ class TemperatureManager (val connection: Connection) {
         var rs = ps.executeQuery()
         val valeur = rs.getDouble("value")
         val enregistrement = rs.getTimestamp("time")
+        ps.close()
         return Temperature(valeur, enregistrement)
     }
 }
