@@ -1,6 +1,5 @@
 package fr.unilim.iut.aqualala.model.sql.classes
 
-import java.text.Format
 import java.text.SimpleDateFormat
 import java.util.*
 const val IDEALE = 0
