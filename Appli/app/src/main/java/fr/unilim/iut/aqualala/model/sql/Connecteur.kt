@@ -8,14 +8,14 @@ class Connecteur {
     lateinit var connector : Connection
 
     @Throws(ClassNotFoundException::class, SQLException::class)
-    fun connect(
-        hote: String?,
+    fun connecter(
+        hote: String,
         port: Int,
-        nomBaseDeDonnee: String?,
-        utilisateur: String?,
-        motDePasseUtilisateur: String?,
+        nomBaseDeDonnee: String,
+        utilisateur: String,
+        motDePasseUtilisateur: String,
         reconnectionAutomatique: Boolean
-    ): Connection? {
+    ): Connection {
         if (this.connected()) {
             return this.connector
         }
