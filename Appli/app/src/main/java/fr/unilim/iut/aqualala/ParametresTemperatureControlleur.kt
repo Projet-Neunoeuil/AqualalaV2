@@ -61,13 +61,13 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                 parametreTemperature.maxTemp=maxTemp.selectedItem.toString().toDouble()
                 parametreTemperature.periode=periode.selectedItem.toString().toInt()
                 if(parametreTemperature.minTemp >= parametreTemperature.maxTemp) {
-                    var tmp = parametreTemperature.maxTemp
-                    parametreTemperature.maxTemp =parametreTemperature.minTemp
-                    parametreTemperature.minTemp = tmp
-                    Toast.makeText(this, "Les données ont été inversée pour rester cohérentes", Toast.LENGTH_SHORT).show()
+                    errParamTemp.text = "Erreur, données inversée, veuillez recommencer"
+                } else
+                {
+                    var asyncParametresTemperatureControlleurEnvoyerDonnees = AsyncParametresTemperatureControlleurEnvoyerDonnees(parametreTemperature, errParamTemp, this)
+                    asyncParametresTemperatureControlleurEnvoyerDonnees.execute()
                 }
-                var asyncParametresTemperatureControlleurEnvoyerDonnees = AsyncParametresTemperatureControlleurEnvoyerDonnees(parametreTemperature, errParamTemp, this)
-                asyncParametresTemperatureControlleurEnvoyerDonnees.execute()
+
 
                 if(errParamTemp.text == "") {
                     Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
