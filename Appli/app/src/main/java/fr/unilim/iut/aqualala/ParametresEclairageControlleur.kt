@@ -7,17 +7,24 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
+import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.*
+import fr.unilim.iut.aqualala.model.sql.Connecteur
+import fr.unilim.iut.aqualala.model.sql.ParametreManager
+import java.sql.Connection
+import java.util.concurrent.Executors
 
 class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener   {
     lateinit var whiteTime : Spinner
     lateinit var blueTime : Spinner
     lateinit var errParamEclair: TextView
-    var parametreEclair = ParametreEclairage("8:00:00","17:30:00")
+    lateinit var parametreManager : ParametreManager
+    lateinit var connection : Connection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_eclairage_controlleur)
+        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
@@ -33,13 +40,11 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         adapterHeureBleu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         var adapterHeureBlanc : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
         adapterHeureBlanc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         initialiserAvecView()
         whiteTime.adapter = adapterHeureBlanc
-        blueTime.adapter = adapterHeureBleu
 
-        var asyncParametresEclairageControlleurRecupererDonnees = AsyncParametresEclairageControlleurRecupererDonnees(parametreEclair, whiteTime, blueTime, errParamEclair, this)
-        asyncParametresEclairageControlleurRecupererDonnees.execute()
+        parametreManager = ParametreManager(connection)
+        blueTime.adapter = adapterHeureBleu
         btnValiderEclair.setOnClickListener(this)
         btnRetourEclair.setOnClickListener(this)
     }
@@ -47,17 +52,14 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnValiderEclair -> {
-                parametreEclair.whiteTime=whiteTime.selectedItem.toString()
-                parametreEclair.blueTime=blueTime.selectedItem.toString()
-                var asyncParametresEclairageControlleurEnvoyerDonnees = AsyncParametresEclairageControlleurEnvoyerDonnees(parametreEclair, errParamEclair, this)
-                asyncParametresEclairageControlleurEnvoyerDonnees.execute()
-                if(errParamEclair.text == "") {
+                var bool = parametreManager.enregistrerParametresEclairage(whiteTime.selectedItem.toString(), blueTime.selectedItem.toString())
+                if(bool) {
                     Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
                     startActivity(intent)
                 } else
                 {
-                    Toast.makeText(this, errParamEclair.text, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
                 }
 
             }

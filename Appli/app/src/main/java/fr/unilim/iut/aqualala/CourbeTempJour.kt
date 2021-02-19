@@ -13,11 +13,15 @@ import androidx.core.content.ContextCompat
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
-import java.sql.DriverManager
+import fr.unilim.iut.aqualala.config.*
+import fr.unilim.iut.aqualala.model.sql.Connecteur
+import fr.unilim.iut.aqualala.model.sql.CourbesManager
+import java.sql.Connection
 import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
 class CourbeTempJour : AppCompatActivity() {
+    lateinit var connection : Connection
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
@@ -26,6 +30,7 @@ class CourbeTempJour : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courbe_temp_jour)
+        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
         val graph : GraphView = findViewById(R.id.graph)
         graph.title = "Evolution de la température pendant les 24 dernières heures"
         graph.viewport.isScalable = true
@@ -35,24 +40,12 @@ class CourbeTempJour : AppCompatActivity() {
         var exec = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
         exec.execute{
-            var conn = DriverManager.getConnection(
-                //jdbc:mysql://<IP>:<port>/<nom de la base>
-                "jdbc:mysql://xiangyu-an.fr:3306/Application",
-                "Appli",
-                "#M0td3p@553"
-            )
-            var x = 0.0
-            var datalist : ArrayList<DataPoint> = ArrayList()
-            val rs = conn.createStatement().executeQuery("SELECT value FROM HourlyAverage ORDER BY hour ASC")
-            while(rs.next()) {
-                var value = rs.getDouble("value")
-                datalist.add(DataPoint(x, value))
-                x += 1
-            }
+
+            var listeTemp : ArrayList<DataPoint> = CourbesManager(connection).obtenirCourbeJournee()
+
             handler.post {
-                conn.close()
-                var dataArr = arrayOfNulls<DataPoint>(datalist.size)
-                dataArr = datalist.toArray(dataArr)
+                var dataArr = arrayOfNulls<DataPoint>(listeTemp.size)
+                dataArr = listeTemp.toArray(dataArr)
                 var series : LineGraphSeries<DataPoint?> = LineGraphSeries(dataArr)
                 series.isDrawDataPoints = true
                 series.thickness = 8

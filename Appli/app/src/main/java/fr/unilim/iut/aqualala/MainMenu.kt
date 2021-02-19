@@ -4,13 +4,21 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import fr.unilim.iut.aqualala.config.*
+import fr.unilim.iut.aqualala.model.sql.Connecteur
+import java.sql.Connection
+import java.util.concurrent.Executors
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu)

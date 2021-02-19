@@ -1,13 +1,17 @@
 package fr.unilim.iut.aqualala.model.sql
 
+import android.os.Handler
+import android.os.Looper
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
+import java.util.concurrent.Executors
+import kotlin.jvm.Throws
 
 class Connecteur {
-    lateinit var connector : Connection
+    private var connector: Connection? = null
 
-    @Throws(ClassNotFoundException::class, SQLException::class)
+    @Throws (SQLException::class, ClassNotFoundException::class)
     fun connecter(
         hote: String,
         port: Int,
@@ -17,7 +21,7 @@ class Connecteur {
         reconnectionAutomatique: Boolean
     ): Connection {
         if (this.connected()) {
-            return this.connector
+            return this.connector!!
         }
         val url = StringBuilder()
             .append("jdbc:")
@@ -32,14 +36,15 @@ class Connecteur {
             .append(reconnectionAutomatique)
             .toString()
         Class.forName("com.mysql.jdbc.Driver")
-        connector = DriverManager.getConnection(url, utilisateur, motDePasseUtilisateur)
-        return this.connector
+        this.connector = DriverManager.getConnection(url, utilisateur, motDePasseUtilisateur)
+
+        return this.connector!!
     }
 
 
     private fun connected(): Boolean {
         return try {
-            this.connector != null && !this.connector.isClosed
+            this.connector != null && !this.connector?.isClosed!!
         } catch (e: SQLException) {
             false
         }
