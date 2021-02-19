@@ -1,16 +1,31 @@
 package fr.unilim.iut.aqualala.model.sql.classes
 
+
+import fr.unilim.iut.aqualala.config.*
+import java.text.Format
 import java.text.SimpleDateFormat
 import java.util.*
-const val IDEALE = 0
-const val BASSE = 1
-const val HAUTE = 2
+
 class Temperature (val valeur : Double, val date : Date) {
+    init{
+        println("Température")
+        println("Valeur: $valeur")
+        println("Date: $date")
+    }
 
     fun obtenirChaleurEau(parametres: Parametres): Int {
-        if(valeur < parametres.minTemp) return BASSE
-        if(valeur > parametres.maxTemp) return HAUTE
-        return IDEALE
+        when(valeur){
+            in PLUS_BASSE_TEMPERATURE.toDouble()..parametres.minTemp -> return BASSE
+            in parametres.maxTemp..MAXMUM_RAFRACHIR_PAGE_TEMPERATURE.toDouble() -> return HAUTE
+            else -> return IDEALE
+        }
+    }
+    fun renvoyerCommentaire(estValideOuPas:Int):String {
+        when(estValideOuPas){
+            IDEALE->return "La température est idéale"
+            BASSE->return "La température est anormalement basse"
+            else->return "La température est anormalement élevé"
+        }
     }
     fun recupererHeureMinute() : String{
         return SimpleDateFormat("HH:mm").format(date)
