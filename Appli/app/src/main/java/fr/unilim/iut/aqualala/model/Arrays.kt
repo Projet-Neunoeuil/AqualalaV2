@@ -1,19 +1,32 @@
 package fr.unilim.iut.aqualala.model
 
+import fr.unilim.iut.aqualala.config.*
+
 class Arrays {
     val listeTemperature : ArrayList<String> = ArrayList()
     val listeHeure : ArrayList<String> = ArrayList()
     val listeDelai : ArrayList<String> = ArrayList()
-
+    val listePeriodeChangeWater: ArrayList<String> = ArrayList()
     init {
-        for (i in 10..50) {
+        for (i in PLUS_BASSE_TEMPERATURE..PLUS_HAUTE_TEMPERATURE) {
             listeTemperature.add(i.toString())
         }
-        for (i in 1..60) {
+        for (i in MINIMUM_RAFRACHIR_PAGE_TEMPERATURE..MAXMUM_RAFRACHIR_PAGE_TEMPERATURE) {
             listeDelai.add(i.toString())
         }
+        for(i in MINIMUM_FREQUENCE_CHANGEMENT_EAU..MAXIMUM_FREQUENCE_CHANGEMENT_EAU){
+            listePeriodeChangeWater.add(i.toString())
+        }
 
-        //Matin
+        for(i in 0..9){
+            listeHeure.add("0$i:00")
+            listeHeure.add("0$i:30")
+        }
+        for(i in 10..23){
+            listeHeure.add("$i:00")
+            listeHeure.add("$i:30")
+        }
+        /*//Matin
         listeHeure.add("00:00"); listeHeure.add("00:30")
         listeHeure.add("01:00"); listeHeure.add("01:30")
         listeHeure.add("02:00"); listeHeure.add("02:30")
@@ -38,8 +51,6 @@ class Arrays {
         listeHeure.add("20:00"); listeHeure.add("20:30")
         listeHeure.add("21:00"); listeHeure.add("21:30")
         listeHeure.add("22:00"); listeHeure.add("22:30")
-        listeHeure.add("23:00"); listeHeure.add("23:30")
-
-
+        listeHeure.add("23:00"); listeHeure.add("23:30")*/
     }
 }
