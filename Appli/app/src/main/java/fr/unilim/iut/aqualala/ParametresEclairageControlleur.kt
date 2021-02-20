@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
@@ -11,6 +13,7 @@ import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.*
 import fr.unilim.iut.aqualala.model.sql.Connecteur
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
+import fr.unilim.iut.aqualala.model.sql.classes.Parametres
 import java.sql.Connection
 import java.util.concurrent.Executors
 
@@ -19,12 +22,10 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     lateinit var blueTime : Spinner
     lateinit var errParamEclair: TextView
     lateinit var parametreManager : ParametreManager
-    lateinit var connection : Connection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_eclairage_controlleur)
-        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
@@ -42,24 +43,44 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         adapterHeureBlanc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         initialiserAvecView()
         whiteTime.adapter = adapterHeureBlanc
+        Executors.newSingleThreadExecutor().execute {
+            parametreManager = ParametreManager()
+            Handler(Looper.getMainLooper()).post {
+                Executors.newSingleThreadExecutor().execute {
+                    var parametre = parametreManager.obtenirParametres()
+                    mettreValeurParDefaut(parametre)
+                }
+            }
+        }
 
-        parametreManager = ParametreManager()
         blueTime.adapter = adapterHeureBleu
         btnValiderEclair.setOnClickListener(this)
         btnRetourEclair.setOnClickListener(this)
     }
 
+    private fun mettreValeurParDefaut(parametre: Parametres) {
+        runOnUiThread {
+            whiteTime.setSelection(Arrays().listeHeure.indexOf(parametre.recupererHeureMinute(parametre.tempsBlanc)))
+            blueTime.setSelection(Arrays().listeHeure.indexOf(parametre.recupererHeureMinute(parametre.tempsBleu)))
+        }
+    }
+
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnValiderEclair -> {
-                var bool = parametreManager.enregistrerParametresEclairage(whiteTime.selectedItem.toString(), blueTime.selectedItem.toString())
-                if(bool) {
-                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
-                    startActivity(intent)
-                } else
-                {
-                    Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
+                var bool : Boolean
+                Executors.newSingleThreadExecutor().execute {
+                    bool = parametreManager.enregistrerParametresEclairage(whiteTime.selectedItem.toString(), blueTime.selectedItem.toString())
+                    Handler(Looper.getMainLooper()).post {
+                        if(bool) {
+                            Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
+                            startActivity(intent)
+                        } else
+                        {
+                            Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
 
             }

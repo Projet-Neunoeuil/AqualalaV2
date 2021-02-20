@@ -22,7 +22,6 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
     lateinit var periode: Spinner
     lateinit var errParamTemp: TextView
     lateinit var parametreManager : ParametreManager
-    lateinit var connection : Connection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +30,6 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
         setContentView(R.layout.parametres_temperature_controlleur)
-        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
         btnNeunoeil.setOnClickListener(this)
         val btnValiderTemp = findViewById<Button>(R.id.btnValiderTemp)
@@ -46,11 +44,20 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
         var adapterPeriode : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listePeriode)
         adapterPeriode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        parametreManager = ParametreManager()
+
 
 
 
         initialiserAvecView()
+        Executors.newSingleThreadExecutor().execute {
+            parametreManager = ParametreManager()
+            Handler(Looper.getMainLooper()).post {
+                Executors.newSingleThreadExecutor().execute {
+                        mettreValeurParDefaut(parametreManager)
+                }
+            }
+        }
+
         minTemp.adapter = adapterMinTemp
         maxTemp.adapter = adapterMaxTemp
         periode.adapter = adapterPeriode
@@ -59,26 +66,39 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
         btnRetourTemp.setOnClickListener(this)
     }
 
+    private fun mettreValeurParDefaut(parametreManager: ParametreManager) {
+        var parametre = parametreManager.obtenirParametres()
+
+        runOnUiThread {
+            minTemp.setSelection(Arrays().listeTemperature.indexOf(parametre.minTemp.toInt().toString()))
+            maxTemp.setSelection(Arrays().listeTemperature.indexOf(parametre.maxTemp.toInt().toString()))
+            periode.setSelection(Arrays().listeDelai.indexOf(parametre.periodeGetTemp.toString()))
+        }
+    }
+
     override fun onClick(view: View) {
         when (view.id) {
             R.id.btnValiderTemp -> {
-                var bool : Boolean = false;
-                if(minTemp.selectedItem.toString().toDouble() >= maxTemp.selectedItem.toString().toDouble()) {
-                    errParamTemp.text = "Erreur, données inversée, veuillez recommencer"
-                } else
-                {
-                    bool = parametreManager.enregistrerParametresTemperature(minTemp.selectedItem.toString().toDouble(), maxTemp.selectedItem.toString().toDouble(), periode.selectedItem.toString().toInt())
-                }
-
-
-                if(bool) {
-                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
-                    val handler = Handler(Looper.getMainLooper())
-                    handler.postDelayed(Runnable { startActivity(intent) }, 3000)
-                } else
-                {
-                    Toast.makeText(this,"Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
+                var bool : Boolean
+                Executors.newSingleThreadExecutor().execute {
+                    if(minTemp.selectedItem.toString().toDouble() >= maxTemp.selectedItem.toString().toDouble()) {
+                        errParamTemp.text = "Erreur, données inversée, veuillez recommencer"
+                        bool = false
+                    } else
+                    {
+                        bool = parametreManager.enregistrerParametresTemperature(minTemp.selectedItem.toString().toDouble(), maxTemp.selectedItem.toString().toDouble(), periode.selectedItem.toString().toInt())
+                    }
+                    Handler(Looper.getMainLooper()).post {
+                        if(bool) {
+                            Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
+                            val handler = Handler(Looper.getMainLooper())
+                            handler.postDelayed( { startActivity(intent) }, 3000)
+                        } else
+                        {
+                            Toast.makeText(this,"Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
             R.id.btnRetourTemp -> {

@@ -165,6 +165,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
             R.id.btn_courbes -> {
                 val intent = Intent(this@TemperatureControlleur, CourbesTempMenu::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.neunoeil -> {
                 val intent = Intent(this@TemperatureControlleur, MainMenu::class.java)

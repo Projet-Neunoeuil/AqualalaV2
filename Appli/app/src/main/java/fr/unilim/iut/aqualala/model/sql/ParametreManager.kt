@@ -2,6 +2,7 @@ package fr.unilim.iut.aqualala.model.sql
 
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
 import java.sql.*
+import java.text.SimpleDateFormat
 import java.util.Date
 
 class ParametreManager: ManagerAbstract(){
@@ -14,29 +15,29 @@ class ParametreManager: ManagerAbstract(){
     var intervalChangementEau = 0
 
     fun obtenirParametres(): Parametres {
-        val ps : PreparedStatement = connection.prepareStatement("SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
-        var rs : ResultSet
-
-        try {
-           rs = ps.executeQuery()
-            if (rs.next()) {
-                tempMin = rs.getDouble("minTemp")
-                tempMax = rs.getDouble("maxTemp")
-                heureBlanc = rs.getTimestamp("whiteTime")
-                heureBleu = rs.getTimestamp("blueTime")
-                niveauEau = rs.getBoolean("waterLevel")
-                intervalTemp = rs.getInt("periodGetTemp")
-                intervalChangementEau = rs.getInt("periodChangeWater")
-            }
-            rs.close()
-        } catch (e: Exception) {
-            println(e.toString())
-        } catch (e: SQLException) {
-            println(e.toString())
-        } catch (e: ClassNotFoundException) {
-            println(e.toString())
+        val ps: PreparedStatement =
+            connection.prepareStatement("SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
+        var rs: ResultSet
+        rs = ps.executeQuery()
+        if (rs.next()) {
+            tempMin = rs.getDouble("minTemp")
+            tempMax = rs.getDouble("maxTemp")
+            heureBlanc = rs.getTimestamp("whiteTime")
+            heureBleu = rs.getTimestamp("blueTime")
+            niveauEau = rs.getBoolean("waterLevel")
+            intervalTemp = rs.getInt("periodGetTemp")
+            intervalChangementEau = rs.getInt("periodChangeWater")
         }
-        return Parametres(tempMin, tempMax, heureBlanc, heureBleu, niveauEau, intervalTemp, intervalChangementEau)
+        rs.close()
+        return Parametres(
+            tempMin,
+            tempMax,
+            heureBlanc,
+            heureBleu,
+            niveauEau,
+            intervalTemp,
+            intervalChangementEau
+        )
     }
 
     fun enregistrerParametresTemperature(tempMin : Double, tempMax : Double, periode : Int): Boolean {
@@ -45,28 +46,28 @@ class ParametreManager: ManagerAbstract(){
         ps.setDouble(2, tempMax)
         ps.setInt(3,periode)
 
-        val reussi = ps.execute()
+        val reussi = ps.executeUpdate()
         ps.close()
-        return reussi
+        return reussi > 0
     }
 
     fun enregistrerParametresEclairage(heureBlanc : String, heureBleu : String): Boolean {
         val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET whiteTime=?, blueTime=?")
-        ps.setTime(1, Time.valueOf(heureBlanc))
-        ps.setTime(2, Time.valueOf(heureBleu))
+        ps.setTime(1, Time(SimpleDateFormat("HH:mm").parse(heureBlanc).time))
+        ps.setTime(2, Time(SimpleDateFormat("HH:mm").parse(heureBleu).time))
 
-        val reussi = ps.execute()
+        val reussi = ps.executeUpdate()
         ps.close()
-        return reussi
+        return reussi > 0
     }
 
     fun enregistrerParametresEau(periode: Int): Boolean {
         val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET periodGetChangeWater=?")
         ps.setInt(1, periode)
 
-        val reussi = ps.execute()
+        val reussi = ps.executeUpdate()
         ps.close()
-        return reussi
+        return reussi > 0
     }
 
     fun obtenirParametresTemperature():Array<Double?>{
