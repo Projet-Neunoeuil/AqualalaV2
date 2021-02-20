@@ -2,6 +2,7 @@ package fr.unilim.iut.aqualala.model.sql.classes
 
 
 import fr.unilim.iut.aqualala.config.*
+import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import java.text.Format
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,13 +21,16 @@ class Temperature (val valeur : Double, val date : Date) {
             else -> return IDEALE
         }
     }
-    fun renvoyerCommentaire(estValideOuPas:Int):String {
-        when(estValideOuPas){
-            IDEALE->return "La température est idéale"
-            BASSE->return "La température est anormalement basse"
-            else->return "La température est anormalement élevé"
+
+     fun commentaireSurLaValiditeTemperature(parametres: Parametres): String {
+        when(obtenirChaleurEau(parametres)) {
+            BASSE -> return "La température est annormalement basse"
+            HAUTE -> return "La temperature est annormalement Haute"
+            IDEALE -> return "La temperature est idéale"
         }
+        return "Erreur"
     }
+
     fun recupererHeureMinute() : String{
         return SimpleDateFormat("HH:mm").format(date)
     }

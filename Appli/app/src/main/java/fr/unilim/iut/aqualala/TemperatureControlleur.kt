@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -19,6 +20,7 @@ import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.sql.Connecteur
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import fr.unilim.iut.aqualala.model.sql.TemperatureManager
+import fr.unilim.iut.aqualala.model.sql.classes.Parametres
 import fr.unilim.iut.aqualala.model.sql.classes.Temperature
 import java.sql.Connection
 import java.util.concurrent.Executors
@@ -38,21 +40,16 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     lateinit var tempsView: TextView
     lateinit var msgErreurView: TextView
     lateinit var connection : Connection
+    lateinit var btnNeunoeil : ImageButton
+    lateinit var btn_courbes : Button
 
     var periode=1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Executors.newSingleThreadExecutor().execute {
-            connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
-            Handler(Looper.getMainLooper()).post {
-                super.onCreate(savedInstanceState)
-            }
-        }
-
-
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.temperature)
-        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-        val btn_courbes = findViewById<Button>(R.id.btn_courbes)
+        initView()
+
         btnNeunoeil.setOnClickListener(this)
         btn_courbes.setOnClickListener(this)
 
@@ -62,9 +59,6 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                     acquire()
                 }
             }
-
-        initView()
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
@@ -76,14 +70,19 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
 
                 Executors.newSingleThreadExecutor().execute {
                     temperature = TemperatureManager().obtenirDerniereTemperature()
-                    var parametreManager = ParametreManager(connection)
                     Handler(Looper.getMainLooper()).post {
                         createNotificationChannel()
-                        if (temperature.obtenirChaleurEau(ParametreManager(connection).obtenirParametres()) !=0) {
-                            sendNotification(parametreManager)
-                        }
-                        lierViewAvecTemperature(temperature, parametreManager)
                         handler.postDelayed(this, periode*60*1000.toLong()) //délai en miliseconde : 1000ms = 1s
+                    }
+                }
+
+                Executors.newSingleThreadExecutor().execute {
+                    var parametresTemperature = ParametreManager().obtenirParametres()
+                    Handler(Looper.getMainLooper()).post {
+                        if (temperature.obtenirChaleurEau(parametresTemperature)!=0) {
+                            sendNotification(parametresTemperature)
+                        }
+                        lierViewAvecTemperature(temperature, parametresTemperature)
                     }
                 }
             }
@@ -109,6 +108,8 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         commentaireView = findViewById(R.id.commentaireTemperature)
         tempsView = findViewById(R.id.temps)
         msgErreurView = findViewById(R.id.erreur)
+        btnNeunoeil = findViewById(R.id.neunoeil)
+        btn_courbes = findViewById(R.id.btn_courbes)
     }
 
     private fun createNotificationChannel() {
@@ -128,7 +129,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun sendNotification(parametreManager: ParametreManager) {
+    private fun sendNotification(parametreTemperature: Parametres) {
         // Ouvrir l'activité à partir de la notification
         val intent = Intent(this, TemperatureControlleur::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -138,7 +139,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         var notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.mipmap.neunoeil)
             .setContentTitle(getString(R.string.alertTemperature))
-            .setContentText(commentaireSurLaValiditeTemperature(temperature, parametreManager))
+            .setContentText(temperature.commentaireSurLaValiditeTemperature(parametreTemperature))
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
@@ -149,26 +150,16 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun commentaireSurLaValiditeTemperature(temperature: Temperature, parametreManager: ParametreManager): String {
-        when(temperature.obtenirChaleurEau(parametreManager.obtenirParametres())) {
-            BASSE -> return "La température est annormalement basse"
-            HAUTE -> return "La temperature est annormalement Haute"
-            IDEALE -> return "La temperature est idéale"
-        }
-        return "Erreur"
-    }
-
-
-    private fun lierViewAvecTemperature(temperature: Temperature, parametreManager: ParametreManager) {
+    private fun lierViewAvecTemperature(temperature: Temperature, parametre: Parametres) {
         valeurView!!.text = temperature.valeur.toString() + "°C"
         tempsView!!.text = "La température enregistrée à " + temperature.recupererHeureMinute()
-        commentaireView!!.text = commentaireSurLaValiditeTemperature(temperature, parametreManager)
-        periode= parametreManager.obtenirParametres().periodeGetTemp
-        changerCouleurTexte(temperature, parametreManager)
+        commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature(parametre)
+        periode= parametre.periodeGetTemp
+        changerCouleurTexte(temperature, parametre)
     }
 
-    private fun changerCouleurTexte(temperature: Temperature, parametreManager: ParametreManager) {
-        if(temperature.obtenirChaleurEau(parametreManager.obtenirParametres())==0) {
+    private fun changerCouleurTexte(temperature: Temperature, parametre: Parametres) {
+        if(temperature.obtenirChaleurEau(parametre)==0) {
             commentaireView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
             valeurView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
         } else {

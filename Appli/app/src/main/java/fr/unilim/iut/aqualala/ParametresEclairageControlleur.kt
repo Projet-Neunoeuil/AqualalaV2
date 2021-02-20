@@ -43,7 +43,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         initialiserAvecView()
         whiteTime.adapter = adapterHeureBlanc
 
-        parametreManager = ParametreManager(connection)
+        parametreManager = ParametreManager()
         blueTime.adapter = adapterHeureBleu
         btnValiderEclair.setOnClickListener(this)
         btnRetourEclair.setOnClickListener(this)

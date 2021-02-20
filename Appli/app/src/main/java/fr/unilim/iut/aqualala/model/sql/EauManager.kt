@@ -5,7 +5,7 @@ import java.sql.Connection
 import java.sql.Date
 import java.sql.PreparedStatement
 
-class EauManager(val connection: Connection) {
+class EauManager: ManagerAbstract() {
     fun obtenirDernierDateChangementEau(): Eau {
         val ps :PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water ORDER BY lastChange DESC;")
 

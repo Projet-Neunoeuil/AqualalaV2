@@ -1,23 +1,42 @@
 package fr.unilim.iut.aqualala.model.sql
 
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
-import java.sql.Connection
-import java.sql.PreparedStatement
-import java.sql.Time
+import java.sql.*
 import java.util.*
+import java.util.Date
 
 class ParametreManager: ManagerAbstract(){
+    var tempMin = 0.00
+    var tempMax = 0.00
+    var heureBlanc = Timestamp.valueOf("0000-00-00 00:00:00.0")
+    var heureBleu = Timestamp.valueOf("0000-00-00 00:00:00.0")
+    var niveauEau = false
+    var intervalTemp = 0
+    var intervalChangementEau = 0
+
     fun obtenirParametres(): Parametres {
         val ps : PreparedStatement = connection.prepareStatement("SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
-        val rs = ps.executeQuery()
-        val tempMin = rs.getDouble("minTemp")
-        val tempMax = rs.getDouble("maxTemp")
-        val heureBlanc = rs.getTimestamp("whiteTime")
-        val heureBleu = rs.getTimestamp("blueTime")
-        val niveauEau = rs.getBoolean("waterLevel")
-        val intervalTemp = rs.getInt("periodGetTemp")
-        val intervalChangementEau = rs.getInt("periodChangeWater")
-        ps.close()
+        var rs : ResultSet
+
+        try {
+           rs = ps.executeQuery()
+            if (rs.next()) {
+                tempMin = rs.getDouble("minTemp")
+                tempMax = rs.getDouble("maxTemp")
+                heureBlanc = rs.getTimestamp("whiteTime")
+                heureBleu = rs.getTimestamp("blueTime")
+                niveauEau = rs.getBoolean("waterLevel")
+                intervalTemp = rs.getInt("periodGetTemp")
+                intervalChangementEau = rs.getInt("periodChangeWater")
+            }
+            rs.close()
+        } catch (e: Exception) {
+            println(e.toString())
+        } catch (e: SQLException) {
+            println(e.toString())
+        } catch (e: ClassNotFoundException) {
+            println(e.toString())
+        }
         return Parametres(tempMin, tempMax, heureBlanc, heureBleu, niveauEau, intervalTemp, intervalChangementEau)
     }
 

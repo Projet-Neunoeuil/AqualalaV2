@@ -46,7 +46,7 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
         var adapterPeriode : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listePeriode)
         adapterPeriode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        parametreManager = ParametreManager(connection)
+        parametreManager = ParametreManager()
 
 
 
