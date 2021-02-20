@@ -31,8 +31,8 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
         btnRetourEclair.setOnClickListener(this)
     }
 
-    override fun onClick(view: View?) {
-        when(view){
+    override fun onClick(view: View) {
+        when(view.id){
             R.id.btnValiderFrequence->{
 
             }

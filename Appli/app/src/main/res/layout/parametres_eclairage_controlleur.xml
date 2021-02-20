@@ -25,7 +25,7 @@
         <FrameLayout
             android:id="@+id/menu_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
 
         </FrameLayout>
@@ -90,23 +90,23 @@
 
     <Spinner
         android:id="@+id/heureBlanc"
-        android:fontFamily="@font/nunito"
         android:layout_width="113dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="96dp"
+        android:fontFamily="@font/nunito"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Spinner
         android:id="@+id/derniereDate"
         android:layout_width="116dp"
-        android:fontFamily="@font/nunito"
         android:layout_height="43dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="96dp"
+        android:fontFamily="@font/nunito"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/heureBlanc" />
 
@@ -126,12 +126,12 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:fontFamily="@font/verdana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="96dp"
+        android:fontFamily="@font/verdana"
         android:text="@string/whiteTime"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -140,12 +140,12 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:fontFamily="@font/verdana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="116dp"
+        android:fontFamily="@font/verdana"
         android:text="@string/blueTime"
         android:textColor="@color/white"
         android:textSize="25sp"
