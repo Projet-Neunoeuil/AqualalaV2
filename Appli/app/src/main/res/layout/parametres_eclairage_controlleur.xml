@@ -46,6 +46,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/verdana"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:text="@string/parametresEclairageTitre"
@@ -59,6 +60,7 @@
     <Button
         android:id="@+id/btnValiderEclair"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/verdana"
         android:layout_height="wrap_content"
         android:background="@drawable/arrondir"
         app:backgroundTint="@color/orange"
@@ -74,6 +76,7 @@
         android:id="@+id/btnRetourEclair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/verdana"
         android:background="@drawable/arrondir"
         app:backgroundTint="@color/orange"
         android:text="@string/retour"
@@ -87,6 +90,7 @@
 
     <Spinner
         android:id="@+id/heureBlanc"
+        android:fontFamily="@font/nunito"
         android:layout_width="113dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -98,6 +102,7 @@
     <Spinner
         android:id="@+id/derniereDate"
         android:layout_width="116dp"
+        android:fontFamily="@font/nunito"
         android:layout_height="43dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
@@ -109,6 +114,7 @@
         android:id="@+id/errParamEclair"
         android:layout_width="50dp"
         android:layout_height="17dp"
+        android:fontFamily="@font/nunito"
         android:text="@string/erreur"
         android:textColor="@color/rose_pastel"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,6 +126,7 @@
 
     <TextView
         android:id="@+id/textView4"
+        android:fontFamily="@font/verdana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -133,6 +140,7 @@
 
     <TextView
         android:id="@+id/textView5"
+        android:fontFamily="@font/verdana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"

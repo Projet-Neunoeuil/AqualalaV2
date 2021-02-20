@@ -46,6 +46,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
+        android:fontFamilly = "@font/verdana"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
 
@@ -60,6 +61,7 @@
         android:id="@+id/btnParamTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamilly = "@font/verdana"
         android:layout_marginTop="96dp"
         android:background="@drawable/arrondir"
         app:backgroundTint="@color/orange"
@@ -75,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="144dp"
+        android:fontFamilly = "@font/verdana"
         android:background="@drawable/arrondir"
         app:backgroundTint="@color/orange"
         android:text="@string/parametresEclairage"
