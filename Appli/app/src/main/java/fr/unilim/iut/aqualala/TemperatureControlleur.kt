@@ -65,25 +65,18 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         var handler = Handler(Looper.getMainLooper())
         val runnable: Runnable = object : Runnable {
             override fun run() {
-
                 Executors.newSingleThreadExecutor().execute {
                     temperature = TemperatureManager().obtenirDerniereTemperature()
-                    handler.post {
-                        createNotificationChannel()
-                        handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
-                    }
-                }
-                Executors.newSingleThreadExecutor().execute {
                     var parametresTemperature = ParametreManager().obtenirParametres()
                     handler.post {
+                        createNotificationChannel()
                         if (temperature.obtenirValiditeEau(parametresTemperature)!=0) {
                             sendNotification(parametresTemperature)
                         }
                         lierViewAvecTemperature(temperature, parametresTemperature)
+                        handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
                     }
                 }
-
-
             }
         }
         runnable.run()
