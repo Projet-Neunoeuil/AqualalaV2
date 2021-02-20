@@ -2,14 +2,13 @@ package fr.unilim.iut.aqualala.model.sql
 
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
 import java.sql.*
-import java.util.*
 import java.util.Date
 
 class ParametreManager: ManagerAbstract(){
     var tempMin = 0.00
     var tempMax = 0.00
-    var heureBlanc = Timestamp.valueOf("0000-00-00 00:00:00")
-    var heureBleu = Timestamp.valueOf("0000-00-00 00:00:00")
+    var heureBlanc = Date()
+    var heureBleu = Date()
     var niveauEau = false
     var intervalTemp = 0
     var intervalChangementEau = 0
