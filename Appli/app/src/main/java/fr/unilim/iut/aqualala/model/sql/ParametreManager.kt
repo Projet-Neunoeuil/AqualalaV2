@@ -69,6 +69,15 @@ class ParametreManager: ManagerAbstract(){
         return reussi
     }
 
+    fun enregistrerEau(derniereDateChangementEau:String) :Boolean{
+        val ps:PreparedStatement=connection.prepareStatement("INSERT INTO `Water` (`lastChange`) VALUES (?);")
+        ps.setString(1, derniereDateChangementEau)
+
+        val reussi=ps.execute()
+        ps.close()
+        return reussi
+    }
+
     fun obtenirParametresTemperature():Array<Double?>{
         var ps: PreparedStatement =connection.prepareStatement("SELECT minTemp, maxTemp,periodGetTemp FROM Parametres;")
 
@@ -91,12 +100,21 @@ class ParametreManager: ManagerAbstract(){
     }
 
     fun obtenirParametresEau():Int{
-        var ps: PreparedStatement = connection.prepareStatement("SELECT frequenceChangeWater FROM Parameters ;")
+        var ps: PreparedStatement = connection.prepareStatement("SELECT periodGetChangeWater FROM Parameters ;")
 
         val rs=ps.executeQuery()
         val frequenceChangeWater=rs.getInt("frequenceChangeWater")
         ps.close()
         return frequenceChangeWater
+    }
+
+    fun obtenirDateEau():Date{
+        var ps: PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water ;")
+
+        val rs=ps.executeQuery()
+        val derniereDateChangementEau=rs.getTimestamp("lastChange")
+        ps.close()
+        return derniereDateChangementEau
     }
 
 }

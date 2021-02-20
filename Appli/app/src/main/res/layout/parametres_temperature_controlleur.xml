@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:text="@string/parametresTemperatureTitre"
+        android:text="@string/parametres_temperature_titre"
         android:fontFamily="@font/verdana"
         android:textColor="@color/white"
         android:textSize="30sp"
