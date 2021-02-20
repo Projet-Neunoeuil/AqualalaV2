@@ -59,7 +59,6 @@
     <Button
         android:id="@+id/btnRetour"
         android:layout_width="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/graph"
         android:background="@drawable/arrondir"

@@ -9,7 +9,6 @@
 
     <Spinner
         android:id="@+id/derniereDate"
-        android:fontFamilly = "@font/nunito"
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="54dp"
@@ -25,7 +24,6 @@
         android:id="@+id/frequenceChangeEau"
         android:layout_width="0dp"
         android:layout_height="43dp"
-        android:fontFamilly = "@font/nunito"
         android:layout_marginStart="54dp"
         android:layout_marginLeft="54dp"
         android:layout_marginTop="36dp"
@@ -41,7 +39,6 @@
         android:id="@+id/btnValideDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Valider la date"
@@ -51,7 +48,6 @@
 
     <Button
         android:id="@+id/btnValiderFrequence"
-        android:fontFamilly = "@font/verdana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -67,7 +63,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
-        android:fontFamilly = "@font/verdana"
         android:text="Retour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +74,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginLeft="26dp"
-        android:fontFamilly = "@font/verdana"
         android:text="La prochaine date du changement d'eau : "
         app:layout_constraintBaseline_toBaselineOf="@+id/prochaineDate"
         app:layout_constraintStart_toStartOf="parent" />
@@ -87,7 +81,6 @@
     <TextView
         android:id="@+id/prochaineDate"
         android:layout_width="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_height="wrap_content"
         android:layout_marginTop="173dp"
         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -97,7 +90,6 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginBottom="50dp"
@@ -109,7 +101,6 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_marginBottom="17dp"
         android:text="La fréquence du changement d'eau"
         app:layout_constraintBottom_toTopOf="@+id/btnValiderFrequence"
@@ -119,7 +110,6 @@
     <TextView
         android:id="@+id/errParamEau"
         android:layout_width="wrap_content"
-        android:fontFamilly = "@font/nunito"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginLeft="22dp"
