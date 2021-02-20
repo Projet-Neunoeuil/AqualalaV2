@@ -16,8 +16,12 @@ class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
 
         val btnCourbeTempJour = findViewById<Button>(R.id.btnCourbeTempJour)
         val btnCourbeTempSemaine = findViewById<Button>(R.id.btnCourbeTempSemaine)
+        val btnCourbeTempMois = findViewById<Button>(R.id.btnCourbeTempMois)
+        val btnCourbeTempAn = findViewById<Button>(R.id.btnCourbeTempAn)
         btnCourbeTempJour.setOnClickListener(this)
         btnCourbeTempSemaine.setOnClickListener(this)
+        btnCourbeTempMois.setOnClickListener(this)
+        btnCourbeTempAn.setOnClickListener(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
@@ -31,14 +35,32 @@ class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
             R.id.btnCourbeTempJour -> {
                 val intent = Intent(this@CourbesTempMenu, CourbeTempJour::class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.btnCourbeTempSemaine -> {
                 val intent = Intent(this@CourbesTempMenu, CourbeTempSemaine::class.java)
                 startActivity(intent)
+                finish()
+            }
+            R.id.btnCourbeTempMois -> {
+                val intent = Intent(this@CourbesTempMenu, CourbeTempMois::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.btnCourbeTempAn -> {
+                val intent = Intent(this@CourbesTempMenu, CourbeTempAn::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.btnRetour -> {
+                val intent = Intent(this@CourbesTempMenu, TemperatureControlleur::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.neunoeil -> {
                 val intent = Intent(this@CourbesTempMenu, MainMenu::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

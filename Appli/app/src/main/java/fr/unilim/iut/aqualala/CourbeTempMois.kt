@@ -1,6 +1,5 @@
 package fr.unilim.iut.aqualala
 
-
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -16,7 +15,7 @@ import com.jjoe64.graphview.GraphView
 import fr.unilim.iut.aqualala.model.sql.CourbesManager
 import java.util.concurrent.Executors
 
-class CourbeTempJour : AppCompatActivity(), View.OnClickListener {
+class CourbeTempMois : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
@@ -26,7 +25,7 @@ class CourbeTempJour : AppCompatActivity(), View.OnClickListener {
                 ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_courbe_temp_jour)
+        setContentView(R.layout.activity_courbe_temp_mois)
         val graph: GraphView = findViewById(R.id.graph)
         val btnRetour : Button = findViewById(R.id.btnRetour)
         val neunoeil : ImageButton = findViewById(R.id.neunoeil)
@@ -34,27 +33,22 @@ class CourbeTempJour : AppCompatActivity(), View.OnClickListener {
         neunoeil.setOnClickListener(this)
         graph.visibility = View.VISIBLE
         var exec = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
-        var runnable = object : Runnable {
-            override fun run() {
-                CourbesManager().obtenirCourbeJournee(graph)
-                handler.postDelayed(this, 1 * 60 * 60 * 1000)
-            }
-        }
         exec.execute {
-            runnable.run()
+
+            CourbesManager().obtenirCourbeMois(graph)
+
         }
     }
 
     override fun onClick(view : View) {
         when (view.id) {
             R.id.btnRetour -> {
-                val intent = Intent(this@CourbeTempJour, CourbesTempMenu::class.java)
+                val intent = Intent(this@CourbeTempMois, CourbesTempMenu::class.java)
                 startActivity(intent)
                 finish()
             }
             R.id.neunoeil -> {
-                val intent = Intent(this@CourbeTempJour, MainMenu::class.java)
+                val intent = Intent(this@CourbeTempMois, MainMenu::class.java)
                 startActivity(intent)
                 finish()
             }

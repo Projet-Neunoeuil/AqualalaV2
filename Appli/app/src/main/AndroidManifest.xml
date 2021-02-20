@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/neunoeil_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AqualalaV2">
-
-        <activity android:name=".CourbeTempSemaine"></activity>
+        <activity android:name=".CourbeTempAn"></activity>
+        <activity android:name=".CourbeTempMois" />
+        <activity android:name=".CourbeTempSemaine" />
         <activity android:name=".CourbeTempJour" />
         <activity android:name=".CourbesTempMenu" />
-        <activity android:name=".model.ChangementEau"></activity>
+        <activity android:name=".model.ChangementEau" />
         <activity android:name=".ParametresEauControlleur" />
         <activity android:name=".ParametresEclairageControlleur" />
         <activity android:name=".ParametresTemperatureControlleur" />
