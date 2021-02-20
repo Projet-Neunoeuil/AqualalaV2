@@ -6,7 +6,7 @@ import java.sql.*
 
 class TemperatureManager : ManagerAbstract() {
     var valeur: Double = 0.00
-    var enregistrement: Timestamp = Timestamp.valueOf("0000-00-00 00:00:00.0")
+    var enregistrement: Timestamp = Timestamp.valueOf("0000-00-00 00:00:00")
 
     fun obtenirDerniereTemperature(): Temperature {
         val ps : PreparedStatement = connection.prepareStatement("SELECT value, time FROM Temperature ORDER BY time DESC")

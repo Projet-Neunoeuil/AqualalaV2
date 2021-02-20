@@ -8,8 +8,8 @@ import java.util.Date
 class ParametreManager: ManagerAbstract(){
     var tempMin = 0.00
     var tempMax = 0.00
-    var heureBlanc = Timestamp.valueOf("0000-00-00 00:00:00.0")
-    var heureBleu = Timestamp.valueOf("0000-00-00 00:00:00.0")
+    var heureBlanc = Timestamp.valueOf("0000-00-00 00:00:00")
+    var heureBleu = Timestamp.valueOf("0000-00-00 00:00:00")
     var niveauEau = false
     var intervalTemp = 0
     var intervalChangementEau = 0

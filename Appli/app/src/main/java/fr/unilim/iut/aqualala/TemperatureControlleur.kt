@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -17,7 +16,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
-import fr.unilim.iut.aqualala.model.sql.Connecteur
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import fr.unilim.iut.aqualala.model.sql.TemperatureManager
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
@@ -70,21 +68,22 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
 
                 Executors.newSingleThreadExecutor().execute {
                     temperature = TemperatureManager().obtenirDerniereTemperature()
-                    Handler(Looper.getMainLooper()).post {
+                    handler.post {
                         createNotificationChannel()
-                        handler.postDelayed(this, periode*60*1000.toLong()) //délai en miliseconde : 1000ms = 1s
+                        handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
                     }
                 }
-
                 Executors.newSingleThreadExecutor().execute {
                     var parametresTemperature = ParametreManager().obtenirParametres()
-                    Handler(Looper.getMainLooper()).post {
-                        if (temperature.obtenirChaleurEau(parametresTemperature)!=0) {
+                    handler.post {
+                        if (temperature.obtenirValiditeEau(parametresTemperature)!=0) {
                             sendNotification(parametresTemperature)
                         }
                         lierViewAvecTemperature(temperature, parametresTemperature)
                     }
                 }
+
+
             }
         }
         runnable.run()
@@ -159,7 +158,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun changerCouleurTexte(temperature: Temperature, parametre: Parametres) {
-        if(temperature.obtenirChaleurEau(parametre)==0) {
+        if(temperature.obtenirValiditeEau(parametre)==0) {
             commentaireView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
             valeurView!!.setTextColor(ContextCompat.getColor(this, R.color.vert))
         } else {
