@@ -50,7 +50,6 @@
     <TextView
         android:id="@+id/titreMenu"
         android:layout_width="wrap_content"
-        android:fontFamilly = "@font/verdana"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
         android:text="@string/titre_menu"
@@ -80,9 +79,8 @@
 
     <TextView
         android:id="@+id/temperatureTexte"
-        android:layout_width="112dp"
-        android:layout_height="35dp"
-        android:fontFamilly = "@font/verdana"
+        android:layout_width="160dp"
+        android:layout_height="45dp"
         android:text="@string/temperatureTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
@@ -97,7 +95,6 @@
         android:id="@+id/lumiereTexte"
         android:layout_width="123dp"
         android:layout_height="35dp"
-        android:fontFamilly = "@font/verdana"
         android:text="@string/paramTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
