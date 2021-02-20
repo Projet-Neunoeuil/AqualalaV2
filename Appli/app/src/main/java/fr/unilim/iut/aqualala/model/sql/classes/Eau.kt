@@ -3,7 +3,7 @@ package fr.unilim.iut.aqualala.model.sql.classes
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Eau (val derniereDateChangementEau:Date) {
+class Eau (var derniereDateChangementEau:Date) {
     init {
         println("Dernière date de changement d'eau: $derniereDateChangementEau")
     }

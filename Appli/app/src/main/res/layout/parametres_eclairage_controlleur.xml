@@ -49,7 +49,7 @@
         android:fontFamily="@font/verdana"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:text="@string/parametresEclairageTitre"
+        android:text="@string/titre_parametresEclairage"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
