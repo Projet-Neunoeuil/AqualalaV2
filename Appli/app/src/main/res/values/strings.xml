@@ -27,4 +27,6 @@
     <string name="choix">Choisissez votre courbe</string>
     <string name="jour">Les 24 dernières heures</string>
     <string name="semaine">Les 7 derniers jours</string>
+    <string name="mois">Les 30 derniers jours</string>
+    <string name="an">Les 12 derniers mois</string>
 </resources>

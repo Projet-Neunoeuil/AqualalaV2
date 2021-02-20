@@ -7,7 +7,7 @@
     tools:context=".CourbesTempMenu"
     android:background="@color/fond">
 
-     <LinearLayout
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +32,6 @@
         </FrameLayout>
 
     </LinearLayout>
-
     <ImageButton
         android:id="@+id/neunoeil"
         android:layout_width="wrap_content"
@@ -49,12 +48,11 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
         android:layout_marginTop="64dp"
         android:text="@string/choix"
         android:textColor="@color/white"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,27 +60,54 @@
         android:id="@+id/btnCourbeTempJour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/arrondir"
         android:text="@string/jour"
         android:textColor="@color/black"
         app:backgroundTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <Button
         android:id="@+id/btnCourbeTempSemaine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="384dp"
-        android:text="@string/semaine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
         android:background="@drawable/arrondir"
+        android:text="@string/semaine"
+        android:textColor="@color/black"
         app:backgroundTint="@color/orange"
-        android:textColor="@color/black"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCourbeTempJour" />
+
+    <Button
+        android:id="@+id/btnCourbeTempMois"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/arrondir"
+        android:text="@string/mois"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCourbeTempSemaine" />
+
+    <Button
+        android:id="@+id/btnCourbeTempAn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/arrondir"
+        android:text="@string/an"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCourbeTempMois" />
 </androidx.constraintlayout.widget.ConstraintLayout>
