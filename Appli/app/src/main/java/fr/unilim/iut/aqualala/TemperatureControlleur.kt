@@ -144,7 +144,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
 
     private fun lierViewAvecTemperature(temperature: Temperature, parametre: Parametres) {
         valeurView!!.text = temperature.valeur.toString() + "°C"
-        tempsView!!.text = "La température enregistrée à " + temperature.recupererHeureMinute()
+        tempsView!!.text = "Température enregistrée à " + temperature.recupererHeureMinute()
         commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature(parametre)
         periode= parametre.periodeGetTemp
         changerCouleurTexte(temperature, parametre)

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ParametresTemperatureControlleur"
     android:background="@color/fond">
-    <LinearLayout
+    <!-- <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,9 +28,53 @@
             android:layout_height="match_parent">
 
 
+            <Spinner
+                android:id="@+id/delaiRecup"
+                android:layout_width="119dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:fontFamily="@font/nunito" />
+
+
         </FrameLayout>
 
-    </LinearLayout>
+    </LinearLayout> -->
+
+
+    <RelativeLayout
+        android:layout_width="407dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="204dp"
+        android:layout_weight=".28"
+        android:background="@drawable/background"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/minTemp"
+            android:layout_width="114dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="242dp"
+            android:layout_marginLeft="242dp"
+            android:layout_marginTop="19dp"
+            android:fontFamily="@font/nunito" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/drop" />
+
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/neunoeil"
@@ -96,37 +140,15 @@
         app:layout_constraintVertical_bias="0.512" />
 
     <Spinner
-        android:id="@+id/minTemp"
-        android:layout_width="114dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="76dp"
-        android:fontFamily="@font/nunito"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Spinner
         android:id="@+id/maxTemp"
-        android:layout_width="117dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/nunito"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/minTemp" />
-
-    <Spinner
-        android:id="@+id/delaiRecup"
-        android:layout_width="119dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/nunito"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/maxTemp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:spinnerMode="dropdown" />
 
     <TextView
         android:id="@+id/errParamTemp"
