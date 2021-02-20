@@ -6,7 +6,7 @@ import java.sql.PreparedStatement
 import java.sql.Time
 import java.util.*
 
-class ParametreManager(val connection: Connection) {
+class ParametreManager: ManagerAbstract(){
     fun obtenirParametres(): Parametres {
         val ps : PreparedStatement = connection.prepareStatement("SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
         val rs = ps.executeQuery()

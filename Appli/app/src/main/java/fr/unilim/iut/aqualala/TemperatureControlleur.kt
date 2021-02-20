@@ -19,9 +19,6 @@ import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.sql.Connecteur
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import fr.unilim.iut.aqualala.model.sql.TemperatureManager
-import fr.unilim.iut.aqualala.model.sql.classes.BASSE
-import fr.unilim.iut.aqualala.model.sql.classes.HAUTE
-import fr.unilim.iut.aqualala.model.sql.classes.IDEALE
 import fr.unilim.iut.aqualala.model.sql.classes.Temperature
 import java.sql.Connection
 import java.util.concurrent.Executors
@@ -78,7 +75,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
             override fun run() {
 
                 Executors.newSingleThreadExecutor().execute {
-                    temperature = TemperatureManager(connection).obtenirDerniereTemperature()
+                    temperature = TemperatureManager().obtenirDerniereTemperature()
                     var parametreManager = ParametreManager(connection)
                     Handler(Looper.getMainLooper()).post {
                         createNotificationChannel()

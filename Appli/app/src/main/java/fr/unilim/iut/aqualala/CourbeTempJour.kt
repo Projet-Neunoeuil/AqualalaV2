@@ -21,7 +21,6 @@ import java.util.concurrent.Executors
 import kotlin.collections.ArrayList
 
 class CourbeTempJour : AppCompatActivity() {
-    lateinit var connection : Connection
     override fun onCreate(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
@@ -30,18 +29,16 @@ class CourbeTempJour : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courbe_temp_jour)
-        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
         val graph : GraphView = findViewById(R.id.graph)
         graph.title = "Evolution de la température pendant les 24 dernières heures"
         graph.viewport.isScalable = true
         graph.viewport.setMaxX(24.0)
         graph.visibility = View.VISIBLE
-        Class.forName("com.mysql.jdbc.Driver").newInstance()
         var exec = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
         exec.execute{
 
-            var listeTemp : ArrayList<DataPoint> = CourbesManager(connection).obtenirCourbeJournee()
+            var listeTemp : ArrayList<DataPoint> = CourbesManager().obtenirCourbeJournee()
 
             handler.post {
                 var dataArr = arrayOfNulls<DataPoint>(listeTemp.size)

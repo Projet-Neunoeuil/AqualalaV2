@@ -20,11 +20,9 @@ import java.sql.Connection
 import java.util.concurrent.Executors
 
 class CourbeTempSemaine : AppCompatActivity() {
-    lateinit var connection : Connection
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_courbe_temp_semaine)
-        connection = Connecteur().connecter(ADRESSE_DB, PORT_DB, NOM_DB, NOM_UTILISATEUR, MOT_DE_PASSE, true)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
@@ -39,7 +37,7 @@ class CourbeTempSemaine : AppCompatActivity() {
         var exec = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
         exec.execute{
-            var listeTemp : ArrayList<DataPoint> = CourbesManager(connection).obtenirCourbeSemaine()
+            var listeTemp : ArrayList<DataPoint> = CourbesManager().obtenirCourbeSemaine()
 
             handler.post {
                 var dataArr = arrayOfNulls<DataPoint>(listeTemp.size)
