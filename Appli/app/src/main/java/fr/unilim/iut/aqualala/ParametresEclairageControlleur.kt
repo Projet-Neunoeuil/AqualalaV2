@@ -43,6 +43,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         adapterHeureBlanc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         initialiserAvecView()
         whiteTime.adapter = adapterHeureBlanc
+        blueTime.adapter = adapterHeureBleu
         Executors.newSingleThreadExecutor().execute {
             parametreManager = ParametreManager()
             Handler(Looper.getMainLooper()).post {
@@ -52,8 +53,6 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
                 }
             }
         }
-
-        blueTime.adapter = adapterHeureBleu
         btnValiderEclair.setOnClickListener(this)
         btnRetourEclair.setOnClickListener(this)
     }
@@ -98,7 +97,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     }
     fun initialiserAvecView(){
         whiteTime = findViewById(R.id.heureBlanc)
-        blueTime = findViewById(R.id.derniereDate)
+        blueTime = findViewById(R.id.heureBleu)
         errParamEclair = findViewById(R.id.errParamEclair)
     }
 }
