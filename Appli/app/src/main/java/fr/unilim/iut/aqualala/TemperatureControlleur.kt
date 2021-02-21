@@ -37,8 +37,6 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     lateinit var btnNeunoeil : ImageButton
     lateinit var btn_courbes : Button
 
-    var periode=1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.temperature)
@@ -71,6 +69,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                 Executors.newSingleThreadExecutor().execute {
                     temperature = TemperatureManager().obtenirDerniereTemperature()
                     var parametresTemperature = ParametreManager().obtenirParametres()
+                    val periode = parametresTemperature.periodeGetTemp
                     handler.post {
                         notification.createNotificationChannel(
                             getString(R.string.channel_temperature_name),
@@ -87,6 +86,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                             )
                         }
                         lierViewAvecTemperature(temperature, parametresTemperature)
+                        // !!!!!!!!!!!!!!!!!!! A changer en 20 minutes
                         handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
                     }
                 }
@@ -121,7 +121,6 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         valeurView!!.text = temperature.valeur.toString() + "°C"
         tempsView!!.text = "Température enregistrée à " + temperature.recupererHeureMinute()
         commentaireView!!.text = temperature.commentaireSurLaValiditeTemperature(parametre)
-        periode= parametre.periodeGetTemp
         changerCouleurTexte(temperature, parametre)
     }
 

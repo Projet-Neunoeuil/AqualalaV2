@@ -12,7 +12,7 @@ class Eau (var derniereDateChangementEau:Date) {
         return SimpleDateFormat("MM-dd").format(derniereDateChangementEau)
     }
 
-    fun prochainChangementEau(frequenceChangementEau:Int):String{
+    fun prochainChangementEau(frequenceChangementEau:Int) : String{
         var jour=SimpleDateFormat("dd").format(derniereDateChangementEau).toInt()
         var mois=SimpleDateFormat("MM").format(derniereDateChangementEau).toInt()
         var annee=SimpleDateFormat("yyyy").format(derniereDateChangementEau).toInt()

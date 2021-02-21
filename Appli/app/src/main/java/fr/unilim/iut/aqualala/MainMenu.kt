@@ -1,18 +1,24 @@
 package fr.unilim.iut.aqualala
 
+import android.app.NotificationManager
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
+import fr.unilim.iut.aqualala.model.Notification
+import fr.unilim.iut.aqualala.model.sql.ParametreManager
+import fr.unilim.iut.aqualala.model.sql.TemperatureManager
+import java.util.concurrent.Executors
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu)
@@ -35,6 +41,38 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         btnEclaiage.setOnClickListener(this)
         btnTexteEclairage.setOnClickListener(this)
 
+        var notification =  Notification(
+            NOTIFICATION_ID_EAU,
+            CHANNEL_EAU,
+            MainMenu::class.java,
+            this.applicationContext
+        )
+        var handler = Handler(Looper.getMainLooper())
+        val runnable: Runnable = object : Runnable {
+            override fun run() {
+                Executors.newSingleThreadExecutor().execute {
+                    var parametresTemperature = ParametreManager().obtenirParametres()
+                    handler.post {
+                        notification.createNotificationChannel(
+                            getString(R.string.channel_eau_name),
+                            getString(R.string.channel_eau_description),
+                            NotificationManager.IMPORTANCE_DEFAULT
+                        )
+
+                        if (!parametresTemperature.waterLevel) {
+                            notification.sendNotification(
+                                R.mipmap.neunoeil,
+                                getString(R.string.eau_Alerte_Titre),
+                                getString((R.string.description_Eau_Alerte)),
+                                NotificationCompat.PRIORITY_DEFAULT
+                            )
+                        }
+                        handler.postDelayed(this, parametresTemperature.periodeGetTemp*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
+                    }
+                }
+            }
+        }
+        runnable.run()
     }
 
     override fun onClick(view: View) {

@@ -30,7 +30,6 @@ class Notification constructor(val notifId: Int, val channelID: String, var clas
         }
     }
 
-
     fun sendNotification(icon: Int, notifTitre: String, notifTexte: String, priorite: Int) {
         // Ouvrir l'activité à partir de la notification
         val intent = Intent(context.applicationContext, classe).apply {
