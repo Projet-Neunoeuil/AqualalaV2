@@ -1,8 +1,6 @@
 package fr.unilim.iut.aqualala;
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
@@ -13,9 +11,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
+import fr.unilim.iut.aqualala.model.Notification
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import fr.unilim.iut.aqualala.model.sql.TemperatureManager
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
@@ -29,8 +27,6 @@ import java.util.concurrent.Executors
 **/
 
 class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
-    private val notificationId = 1
-    private val CHANNEL_ID = "1"
     lateinit var wakeLock: PowerManager.WakeLock
     lateinit var temperature : Temperature
     lateinit var valeurView: TextView
@@ -62,6 +58,13 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
                 window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
+
+        var notification =  Notification(
+            NOTIFICATION_ID_TEMPERATURE,
+            CHANNEL_TEMPERATURE,
+            TemperatureControlleur::class.java,
+            this.applicationContext
+        )
         var handler = Handler(Looper.getMainLooper())
         val runnable: Runnable = object : Runnable {
             override fun run() {
@@ -69,9 +72,19 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                     temperature = TemperatureManager().obtenirDerniereTemperature()
                     var parametresTemperature = ParametreManager().obtenirParametres()
                     handler.post {
-                        createNotificationChannel()
+                        notification.createNotificationChannel(
+                            getString(R.string.channel_temperature_name),
+                            getString(R.string.channel_temperature_description),
+                            NotificationManager.IMPORTANCE_DEFAULT
+                        )
+
                         if (temperature.obtenirValiditeEau(parametresTemperature)!=0) {
-                            sendNotification(parametresTemperature)
+                            notification.sendNotification(
+                                R.mipmap.neunoeil,
+                                getString(R.string.temperature_Alerte_Titre),
+                                temperature.commentaireSurLaValiditeTemperature(parametresTemperature),
+                                NotificationCompat.PRIORITY_DEFAULT
+                            )
                         }
                         lierViewAvecTemperature(temperature, parametresTemperature)
                         handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
@@ -102,44 +115,6 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         msgErreurView = findViewById(R.id.erreur)
         btnNeunoeil = findViewById(R.id.neunoeil)
         btn_courbes = findViewById(R.id.btn_courbes)
-    }
-
-    private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name)
-            val descriptionText = getString(R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-    private fun sendNotification(parametreTemperature: Parametres) {
-        // Ouvrir l'activité à partir de la notification
-        val intent = Intent(this, TemperatureControlleur::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
-        var notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.mipmap.neunoeil)
-            .setContentTitle(getString(R.string.alertTemperature))
-            .setContentText(temperature.commentaireSurLaValiditeTemperature(parametreTemperature))
-            .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setAutoCancel(true)
-
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(notificationId, notification.build())
-        }
     }
 
     private fun lierViewAvecTemperature(temperature: Temperature, parametre: Parametres) {

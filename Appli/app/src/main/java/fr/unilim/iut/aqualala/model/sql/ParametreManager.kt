@@ -15,10 +15,10 @@ class ParametreManager: ManagerAbstract(){
     var intervalChangementEau = 0
 
     fun obtenirParametres(): Parametres {
-        val ps: PreparedStatement =
-            connection.prepareStatement("SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
-        var rs: ResultSet
-        rs = ps.executeQuery()
+        val ps: PreparedStatement = connection.prepareStatement(
+            "SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
+        val rs = ps.executeQuery()
+
         if (rs.next()) {
             tempMin = rs.getDouble("minTemp")
             tempMax = rs.getDouble("maxTemp")
@@ -29,6 +29,7 @@ class ParametreManager: ManagerAbstract(){
             intervalChangementEau = rs.getInt("periodChangeWater")
         }
         rs.close()
+
         return Parametres(
             tempMin,
             tempMax,

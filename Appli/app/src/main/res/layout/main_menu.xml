@@ -100,12 +100,12 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageLumiere"
+        app:layout_constraintStart_toEndOf="@+id/imageParametre"
         app:layout_constraintTop_toBottomOf="@+id/temperatureTexte"
         app:layout_constraintVertical_bias="0.472" />
 
     <ImageButton
-        android:id="@+id/imageLumiere"
+        android:id="@+id/imageParametre"
         android:layout_width="82dp"
         android:layout_height="89dp"
         android:clickable="true"

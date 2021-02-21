@@ -4,17 +4,11 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
-import fr.unilim.iut.aqualala.model.sql.Connecteur
-import java.sql.Connection
-import java.util.concurrent.Executors
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
 
@@ -31,7 +25,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         /* Bouton température */
         val btnTemperature = findViewById<ImageButton>(R.id.imageThermo)
         val btnTexteTemperature = findViewById<TextView>(R.id.temperatureTexte)
-        val btnEclaiage = findViewById<ImageButton>(R.id.imageLumiere)
+        val btnEclaiage = findViewById<ImageButton>(R.id.imageParametre)
         val btnTexteEclairage = findViewById<TextView>(R.id.lumiereTexte)
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
         btnNeunoeil.setOnClickListener(this)
@@ -50,7 +44,7 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.imageLumiere, R.id.lumiereTexte->{
+            R.id.imageParametre, R.id.lumiereTexte->{
                 val intent = Intent(this@MainMenu, ParametresControlleur::class.java)
                 startActivity(intent)
                 finish()

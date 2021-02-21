@@ -11,22 +11,12 @@ class TemperatureManager : ManagerAbstract() {
 
     fun obtenirDerniereTemperature(): Temperature {
         val ps : PreparedStatement = connection.prepareStatement("SELECT value, time FROM Temperature ORDER BY time DESC")
-        var rs : ResultSet
-
-        try {
-            rs = ps.executeQuery()
-            if(rs.next()) {
-                valeur = rs.getDouble("value")
-                enregistrement = rs.getTimestamp("time")
-            }
-            rs.close()
-        } catch (e: Exception) {
-            println(e.toString())
-        } catch (e: SQLException) {
-            println(e.toString())
-        } catch (e: ClassNotFoundException) {
-            println(e.toString())
+        val rs = ps.executeQuery()
+        if(rs.next()) {
+            valeur = rs.getDouble("value")
+            enregistrement = rs.getTimestamp("time")
         }
+        rs.close()
         return Temperature(valeur, enregistrement)
     }
 }
