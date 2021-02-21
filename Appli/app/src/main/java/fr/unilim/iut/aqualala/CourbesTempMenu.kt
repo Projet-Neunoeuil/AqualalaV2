@@ -18,6 +18,8 @@ class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
         val btnCourbeTempSemaine = findViewById<Button>(R.id.btnCourbeTempSemaine)
         val btnCourbeTempMois = findViewById<Button>(R.id.btnCourbeTempMois)
         val btnCourbeTempAn = findViewById<Button>(R.id.btnCourbeTempAn)
+        val btnRetour = findViewById<Button>(R.id.btnRetour)
+        btnRetour.setOnClickListener(this)
         btnCourbeTempJour.setOnClickListener(this)
         btnCourbeTempSemaine.setOnClickListener(this)
         btnCourbeTempMois.setOnClickListener(this)
