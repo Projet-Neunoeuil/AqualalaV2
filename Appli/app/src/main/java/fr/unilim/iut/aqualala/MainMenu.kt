@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
@@ -15,7 +16,6 @@ import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.Notification
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
-import fr.unilim.iut.aqualala.model.sql.TemperatureManager
 import java.util.concurrent.Executors
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
@@ -31,15 +31,27 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         /* Bouton température */
         val btnTemperature = findViewById<ImageButton>(R.id.imageThermo)
         val btnTexteTemperature = findViewById<TextView>(R.id.temperatureTexte)
+
+        /* Bouton éclairage */
         val btnEclaiage = findViewById<ImageButton>(R.id.imageParametre)
         val btnTexteEclairage = findViewById<TextView>(R.id.lumiereTexte)
-        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-        btnNeunoeil.setOnClickListener(this)
 
+        /* Bouton eau */
+        val btnEau=findViewById<Button>(R.id.imageEau)
+        var btnTexteEau=findViewById<TextView>(R.id.eauTexte)
+
+        /* Bouton général */
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+
+
+
+        btnNeunoeil.setOnClickListener(this)
         btnTemperature.setOnClickListener(this)
         btnTexteTemperature.setOnClickListener(this)
         btnEclaiage.setOnClickListener(this)
         btnTexteEclairage.setOnClickListener(this)
+        btnEau.setOnClickListener(this)
+        btnTexteEau.setOnClickListener(this)
 
         var notification =  Notification(
             NOTIFICATION_ID_EAU,
@@ -77,6 +89,11 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
+            R.id.neunoeil-> {
+                val intent = Intent(this@MainMenu, MainMenu::class.java)
+                startActivity(intent)
+                finish()
+            }
             R.id.imageThermo, R.id.temperatureTexte -> {
                 val intent = Intent(this@MainMenu, TemperatureControlleur::class.java)
                 startActivity(intent)
@@ -87,11 +104,13 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil-> {
-                val intent = Intent(this@MainMenu, MainMenu::class.java)
+            R.id.imageEau,R.id.eauTexte->{
+                val intent = Intent(this@MainMenu, EauControlleur::class.java)
                 startActivity(intent)
                 finish()
             }
+
+
         }
     }
 }

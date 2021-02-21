@@ -16,19 +16,20 @@
         android:orientation="vertical">
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/orange"
-            android:elevation="4dp"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
         <FrameLayout
             android:id="@+id/menu_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/orange"
+                android:elevation="4dp"
+                android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
 
         </FrameLayout>
@@ -90,6 +91,31 @@
         app:layout_constraintStart_toEndOf="@+id/imageThermo"
         app:layout_constraintTop_toTopOf="@+id/imageThermo"
         app:layout_constraintVertical_bias="0.444" />
+
+    <Button
+        android:id="@+id/imageEau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eau"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/eauTexte"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/eauTexte"
+        android:layout_width="103dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="100dp"
+        android:text="Eau"
+        android:textColor="@color/orange"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/lumiereTexte"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureTexte" />
 
     <TextView
         android:id="@+id/lumiereTexte"

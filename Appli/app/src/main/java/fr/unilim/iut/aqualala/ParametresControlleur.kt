@@ -17,6 +17,8 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
 
         val btnParamTemp = findViewById<Button>(R.id.btnParamTemp)
         val btnParamEclair = findViewById<Button>(R.id.btnParamEclair)
+        val btnParamEau = findViewById<Button>(R.id.btnParamEau)
+        btnParamEau.setOnClickListener(this)
         btnParamTemp.setOnClickListener(this)
         btnParamEclair.setOnClickListener(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
@@ -29,6 +31,11 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
 
     override fun onClick(view: View) {
         when (view.id) {
+            R.id.neunoeil -> {
+                val intent = Intent(this@ParametresControlleur, MainMenu::class.java)
+                startActivity(intent)
+                finish()
+            }
             R.id.btnParamTemp -> {
                 val intent = Intent(this@ParametresControlleur, ParametresTemperatureControlleur::class.java)
                 startActivity(intent)
@@ -39,8 +46,8 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
-                val intent = Intent(this@ParametresControlleur, MainMenu::class.java)
+            R.id.btnParamEau -> {
+                val intent = Intent(this@ParametresControlleur, ParametresEauControlleur::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -9,7 +9,12 @@
 
     <Spinner
         android:id="@+id/frequenceChangeEau"
-        android:layout_width="0dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:spinnerMode="dropdown"
+        android:layout_width="70dp"
         android:layout_height="43dp"
         android:layout_marginStart="54dp"
         android:layout_marginLeft="54dp"

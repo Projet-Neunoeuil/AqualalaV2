@@ -28,6 +28,15 @@
             android:layout_height="match_parent" >
 
 
+            <Button
+                android:id="@+id/btnParamEau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="144dp"
+                android:background="@drawable/arrondir"
+                android:text="eau"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/orange" />
         </FrameLayout>
 
     </LinearLayout>
