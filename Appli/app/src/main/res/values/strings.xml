@@ -26,8 +26,8 @@
     <string name="delaiRecup">Période</string>
     <string name="titre_parametresEclairage">Paramètres Eclairage</string>
     <string name="titre_parametresEau">Paramètres Eau</string>
-    <string name="whiteTime">Lumière Blanche</string>
-    <string name="blueTime">Lumière Bleue</string>
+    <string name="whiteTime">Blanc</string>
+    <string name="blueTime">Bleu</string>
     <string name="choix">Choisissez votre courbe</string>
     <string name="jour">Les 24 dernières heures</string>
     <string name="semaine">Les 7 derniers jours</string>
