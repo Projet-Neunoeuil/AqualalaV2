@@ -37,15 +37,9 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         val btnTexteEclairage = findViewById<TextView>(R.id.lumiereTexte)
 
         /* Bouton eau */
-        val btnEau=findViewById<Button>(R.id.imageEau)
+        val btnEau=findViewById<ImageButton>(R.id.imageEau)
         var btnTexteEau=findViewById<TextView>(R.id.eauTexte)
 
-        /* Bouton général */
-        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-
-
-
-        btnNeunoeil.setOnClickListener(this)
         btnTemperature.setOnClickListener(this)
         btnTexteTemperature.setOnClickListener(this)
         btnEclaiage.setOnClickListener(this)
@@ -89,11 +83,6 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.neunoeil-> {
-                val intent = Intent(this@MainMenu, MainMenu::class.java)
-                startActivity(intent)
-                finish()
-            }
             R.id.imageThermo, R.id.temperatureTexte -> {
                 val intent = Intent(this@MainMenu, TemperatureControlleur::class.java)
                 startActivity(intent)
@@ -109,8 +98,6 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-
-
         }
     }
 }

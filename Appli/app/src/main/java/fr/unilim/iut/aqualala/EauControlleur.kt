@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -45,6 +46,8 @@ class EauControlleur : AppCompatActivity(), View.OnClickListener {
             }
         }
         runnable.run()
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        btnNeunoeil.setOnClickListener(this)
         boutonValide.setOnClickListener(this)
     }
 
@@ -62,6 +65,11 @@ class EauControlleur : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
+            }
+            R.id.neunoeil -> {
+                val intent = Intent(this@EauControlleur, MainMenu::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

@@ -18,15 +18,15 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
         val btnParamTemp = findViewById<Button>(R.id.btnParamTemp)
         val btnParamEclair = findViewById<Button>(R.id.btnParamEclair)
         val btnParamEau = findViewById<Button>(R.id.btnParamEau)
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
         btnParamEau.setOnClickListener(this)
         btnParamTemp.setOnClickListener(this)
         btnParamEclair.setOnClickListener(this)
+        btnNeunoeil.setOnClickListener(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
-        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-        btnNeunoeil.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {

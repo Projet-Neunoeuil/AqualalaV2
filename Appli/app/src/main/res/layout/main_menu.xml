@@ -14,14 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
         <FrameLayout
             android:id="@+id/menu_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -30,10 +26,7 @@
                 android:elevation="4dp"
                 android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-
         </FrameLayout>
-
     </LinearLayout>
 
     <ImageButton
@@ -63,59 +56,75 @@
 
     <ImageButton
         android:id="@+id/imageThermo"
-        android:layout_width="82dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="106dp"
+        android:layout_height="105dp"
         android:background="@color/fond"
         android:clickable="true"
         android:foreground="@drawable/thermometre"
         android:tint="@color/fond"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.26"
         app:srcCompat="@drawable/thermometre" />
 
     <TextView
         android:id="@+id/temperatureTexte"
-        android:layout_width="160dp"
-        android:layout_height="45dp"
+        android:layout_width="136dp"
+        android:layout_height="40dp"
         android:text="@string/temperatureTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageThermo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toEndOf="@+id/imageThermo"
         app:layout_constraintTop_toTopOf="@+id/imageThermo"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.469" />
 
-    <Button
+    <ImageButton
         android:id="@+id/imageEau"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eau"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/eauTexte"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        android:layout_width="106dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="52dp"
+        android:background="@color/fond"
+        android:clickable="true"
+        android:foreground="@drawable/eau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageThermo" />
 
     <TextView
         android:id="@+id/eauTexte"
-        android:layout_width="103dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="100dp"
-        android:text="Eau"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:text="@string/eauTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/lumiereTexte"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/imageEau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.239"
+        app:layout_constraintStart_toEndOf="@+id/imageEau"
+        app:layout_constraintTop_toTopOf="@+id/imageEau"
+        app:layout_constraintVertical_bias="0.534" />
+
+    <ImageButton
+        android:id="@+id/imageParametre"
+        android:layout_width="91dp"
+        android:layout_height="91dp"
+        android:background="@color/fond"
+        android:clickable="true"
+        android:foreground="@drawable/rouage"
+        android:tint="@color/fond"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperatureTexte" />
+        app:layout_constraintTop_toBottomOf="@+id/imageEau"
+        app:layout_constraintVertical_bias="0.28" />
 
     <TextView
         android:id="@+id/lumiereTexte"
@@ -124,25 +133,11 @@
         android:text="@string/paramTexte"
         android:textColor="@color/orange"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageParametre"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toEndOf="@+id/imageParametre"
-        app:layout_constraintTop_toBottomOf="@+id/temperatureTexte"
-        app:layout_constraintVertical_bias="0.472" />
-
-    <ImageButton
-        android:id="@+id/imageParametre"
-        android:layout_width="82dp"
-        android:layout_height="89dp"
-        android:clickable="true"
-        android:foreground="@drawable/rouage"
-        android:background="@color/fond"
-        android:tint="@color/fond"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageThermo"
-        app:layout_constraintVertical_bias="0.394" />
+        app:layout_constraintTop_toTopOf="@+id/imageParametre"
+        app:layout_constraintVertical_bias="0.537" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

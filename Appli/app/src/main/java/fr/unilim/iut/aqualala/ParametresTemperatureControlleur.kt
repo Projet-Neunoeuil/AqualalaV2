@@ -45,9 +45,6 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
         adapterPeriode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
 
-
-
-
         initialiserAvecView()
         Executors.newSingleThreadExecutor().execute {
             parametreManager = ParametreManager()

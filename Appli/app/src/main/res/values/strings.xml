@@ -12,8 +12,8 @@
     <string name="channel_temperature_name">Channel température</string>
     <string name="channel_temperature_description">Température notification description</string>
     <string name="titre_changementEau">Changement d\'eau</string>
-    <string name="derniere_date_changementEau">La dernière date du changement d\'eau est :</string>
-    <string name="prochaine_date_changementEau">La prochaine date du changement d\'eau est :</string>
+    <string name="derniere_date_changementEau">La dernière date du changement d\'eau :</string>
+    <string name="prochaine_date_changementEau">La prochaine date du changement d\'eau :</string>
     <string name="parametres">Paramètres</string>
     <string name="parametresTemperature">Température</string>
     <string name="parametresEclairage">éclairage</string>
@@ -37,4 +37,8 @@
     <string name="channel_eau_description">Eau notification description</string>
     <string name="eau_Alerte_Titre">Alerte Niveau Eau !</string>
     <string name="description_Eau_Alerte">Le niveau d\'eau est trop basse !</string>
+    <string name="eauTexte">Eau</string>
+    <string name="btnChangerEau">Effectuer le changement d\'eau</string>
+    <string name="btnFrequence">Valider</string>
+    <string name="parametres_eau_titre">Paramètres eau</string>
 </resources>

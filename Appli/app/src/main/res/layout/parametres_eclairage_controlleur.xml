@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ParametresEclairageControlleur"
     android:background="@color/fond">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -21,15 +20,11 @@
             android:elevation="4dp"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
         <FrameLayout
             android:id="@+id/menu_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
         </FrameLayout>
-
     </LinearLayout>
 
     <ImageButton
@@ -43,12 +38,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/neunoeil" />
+
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:fontFamily="@font/verdana"
-        android:layout_height="wrap_content"
+        android:layout_width="325dp"
+        android:layout_height="98dp"
         android:layout_marginTop="76dp"
+        android:fontFamily="@font/verdana"
         android:text="@string/titre_parametresEclairage"
         android:textColor="@color/white"
         android:textSize="30sp"

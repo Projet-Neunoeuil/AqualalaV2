@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.Arrays
 import fr.unilim.iut.aqualala.model.sql.Connecteur
@@ -29,6 +26,8 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
         //Bouton
         val btnValiderEclair = findViewById<Button>(R.id.btnValiderFrequence)
         val btnRetourEclair = findViewById<Button>(R.id.btnRetourEau)
+        val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        btnNeunoeil.setOnClickListener(this)
         //Récupérer la liste de période de changement d'eau
         var array = Arrays()
         var listePeriodeChangementEau = array.listePeriodeChangeWater
@@ -71,6 +70,11 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btnRetourEau->{
                 val intent = Intent(this@ParametresEauControlleur, ParametresControlleur::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.neunoeil -> {
+                val intent = Intent(this@ParametresEauControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()
             }
