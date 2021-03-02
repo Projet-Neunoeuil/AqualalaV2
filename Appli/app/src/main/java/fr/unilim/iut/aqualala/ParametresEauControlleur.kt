@@ -1,12 +1,14 @@
 package fr.unilim.iut.aqualala
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.Arrays
 import fr.unilim.iut.aqualala.model.sql.Connecteur
@@ -22,6 +24,10 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_eau_controlleur)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
+            window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
+        }
 
         //Bouton
         val btnValiderEclair = findViewById<Button>(R.id.btnValiderFrequence)
