@@ -63,6 +63,7 @@ class EauControlleur : AppCompatActivity(), View.OnClickListener {
                 Executors.newSingleThreadExecutor().execute {
                     ParametreManager().enregistrerEau(changeEnAnneeMoisJour())
                     Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(this,"Le changement d'eau a bien été enregistré !", Toast.LENGTH_SHORT).show()
                         Executors.newSingleThreadExecutor().execute {
                             val intent = Intent(this@EauControlleur, EauControlleur::class.java)
                             startActivity(intent)

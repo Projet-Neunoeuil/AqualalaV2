@@ -65,7 +65,9 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
                     Handler(Looper.getMainLooper()).post {
                         Executors.newSingleThreadExecutor().execute {
                             if(reussi){
-                               // Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show() ça ne marche pas
+                                runOnUiThread {
+                                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                                }
                                 val intent = Intent(this@ParametresEauControlleur, ParametresControlleur::class.java)
                                 startActivity(intent)
                             }
@@ -89,7 +91,7 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
 
     private fun mettreValeurParDefaut(frequenceChangementEau: Int) {
         runOnUiThread {
-            frequenceLigneDeroulante.setSelection(Arrays().listeHeure.indexOf(frequenceChangementEau.toString()))
+            frequenceLigneDeroulante.setSelection(Arrays().listePeriodeChangeWater.indexOf(frequenceChangementEau.toString()))
         }
     }
 }
