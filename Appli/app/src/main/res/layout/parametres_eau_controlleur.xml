@@ -37,7 +37,8 @@
         android:background="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/neunoeil" />
+        app:srcCompat="@drawable/neunoeil"
+        android:contentDescription="Bouton retour menu principal" />
 
     <TextView
         android:id="@+id/textView2"
@@ -58,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="Modifier la fréquence du changement d'eau"
+        android:text="@string/chgt_eau_frequence"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,24 +70,48 @@
         android:layout_width="252dp"
         android:layout_height="57dp"
         android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="@+id/frequenceChangeEau"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/frequenceChangeEau"
-        app:layout_constraintTop_toBottomOf="@+id/frequenceChangeEau" />
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
-    <Spinner
-        android:id="@+id/frequenceChangeEau"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="36dp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="153dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="40dp"
+        android:layout_weight=".28"
+        android:background="@drawable/background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+        <Spinner
+            android:id="@+id/frequenceChangeEau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/drop"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Derouler spinner" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnValiderFrequence"
@@ -94,7 +119,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/arrondir"
         android:fontFamily="@font/verdana"
-        android:text="@string/btnFrequence"
+        android:text="@string/valider"
         android:textColor="@color/black"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +135,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/arrondir"
         android:fontFamily="@font/verdana"
-        android:text="Retour"
+        android:text="@string/retour"
         android:textColor="@color/black"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -70,6 +70,7 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
                                 }
                                 val intent = Intent(this@ParametresEauControlleur, ParametresControlleur::class.java)
                                 startActivity(intent)
+                                finish()
                             }
                             else Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
                         }

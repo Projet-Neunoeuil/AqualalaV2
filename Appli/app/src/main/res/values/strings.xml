@@ -41,4 +41,5 @@
     <string name="btnChangerEau">Effectuer le changement d\'eau</string>
     <string name="btnFrequence">Valider</string>
     <string name="parametres_eau_titre">Paramètres eau</string>
+    <string name="chgt_eau_frequence">Modifier la fréquence du changement d\'eau</string>
 </resources>
