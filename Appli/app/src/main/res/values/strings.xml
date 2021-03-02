@@ -1,45 +1,67 @@
 <resources>
+    <!-- Nom de l'application -->
     <string name="app_name">Aqualala</string>
+
+    <!-- Titre des pages -->
     <string name="titre_menu">Menu</string>
-    <string name="temperatureTexte">Température</string>
-    <string name="paramTexte">Paramètres</string>
     <string name="titre_temperature">Température de l\'eau</string>
-    <string name="default_info_temp">La température est</string>
-    <string name="btnCourbesEvolution">Voir courbes d\'évolution</string>
-    <string name="tempsTemperature">Température mesurée à</string>
-    <string name="erreur"></string>
-    <string name="valeurTemperature">0°C</string>
-    <string name="channel_temperature_name">Channel température</string>
-    <string name="channel_temperature_description">Température notification description</string>
     <string name="titre_changementEau">Changement d\'eau</string>
-    <string name="derniere_date_changementEau">La dernière date du changement d\'eau :</string>
-    <string name="prochaine_date_changementEau">La prochaine date du changement d\'eau :</string>
     <string name="parametres">Paramètres</string>
-    <string name="parametresTemperature">Température</string>
-    <string name="parametresEclairage">éclairage</string>
     <string name="parametres_temperature_titre">Paramètres Température</string>
+    <string name="titre_parametresEclairage">Paramètres Eclairage</string>
+    <string name="parametres_eau_titre">Paramètres eau</string>
+    <string name="choix">Choisissez votre courbe</string>
+
+    <!-- Boutons -->
     <string name="valider">Valider</string>
     <string name="retour">Retour</string>
-    <string name="minTemp">Min</string>
-    <string name="maxTemp">Max</string>
-    <string name="delaiRecup">Période</string>
-    <string name="titre_parametresEclairage">Paramètres Eclairage</string>
-    <string name="titre_parametresEau">Paramètres Eau</string>
-    <string name="whiteTime">Blanc</string>
-    <string name="blueTime">Bleu</string>
-    <string name="choix">Choisissez votre courbe</string>
+    <string name="btnCourbesEvolution">Voir courbes d\'évolution</string>
     <string name="jour">Les 24 dernières heures</string>
     <string name="semaine">Les 7 derniers jours</string>
     <string name="mois">Les 30 derniers jours</string>
     <string name="an">Les 12 derniers mois</string>
-    <string name="temperature_Alerte_Titre">Alerte Température !</string>
-    <string name="channel_eau_name">Channel eau</string>
-    <string name="channel_eau_description">Eau notification description</string>
-    <string name="eau_Alerte_Titre">Alerte Niveau Eau !</string>
-    <string name="description_Eau_Alerte">Le niveau d\'eau est trop basse !</string>
-    <string name="eauTexte">Eau</string>
     <string name="btnChangerEau">Effectuer le changement d\'eau</string>
-    <string name="btnFrequence">Valider</string>
-    <string name="parametres_eau_titre">Paramètres eau</string>
+    <string name="parametresTemperature">Température</string>
+    <string name="parametresEclairage">éclairage</string>
+    <string name="parametresEau">eau</string>
+
+    <!-- Navigation Menu -->
+    <string name="temperatureTexte">Température</string>
+    <string name="paramTexte">Paramètres</string>
+    <string name="eauTexte">Eau</string>
+
+    <!-- Elements UI Généraux -->
+    <string name="erreur"></string>
+
+    <!-- Elements UI Température -->
+    <string name="default_info_temp">La température est</string>
+    <string name="tempsTemperature">Température mesurée à</string>
+    <string name="valeurTemperature">0°C</string>
+
+    <!-- Elements UI Eau -->
+    <string name="derniere_date_changementEau">La dernière date du changement d\'eau :</string>
+    <string name="prochaine_date_changementEau">La prochaine date du changement d\'eau :</string>
+
+    <!-- Elements UI Parametres de température -->
+    <string name="minTemp">Min</string>
+    <string name="maxTemp">Max</string>
+    <string name="delaiRecup">Période</string>
+
+    <!-- Elements UI Parametres d'éclairage -->
+    <string name="whiteTime">Blanc</string>
+    <string name="blueTime">Bleu</string>
+
+    <!-- Elements UI Parametres d'eau -->
     <string name="chgt_eau_frequence">Modifier la fréquence du changement d\'eau</string>
+
+    <!-- Notifications -->
+        <!-- Temperature -->
+        <string name="channel_temperature_name">Channel température</string>
+        <string name="channel_temperature_description">Température notification description</string>
+        <string name="temperature_Alerte_Titre">Alerte Température !</string>
+        <!-- Niveau d'eau -->
+        <string name="channel_eau_name">Channel eau</string>
+        <string name="channel_eau_description">Eau notification description</string>
+        <string name="eau_Alerte_Titre">Alerte Niveau Eau !</string>
+        <string name="description_Eau_Alerte">Le niveau d\'eau est trop bas !</string>
 </resources>
