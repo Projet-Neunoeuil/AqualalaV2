@@ -39,8 +39,8 @@
     <string name="valeurTemperature">0°C</string>
 
     <!-- Elements UI Eau -->
-    <string name="derniere_date_changementEau">La dernière date du changement d\'eau :</string>
-    <string name="prochaine_date_changementEau">La prochaine date du changement d\'eau :</string>
+    <string name="derniere_date_changementEau">Définir la dernière date du changement d\'eau :</string>
+    <string name="prochaine_date_changementEau">Prévoyez à changer l\'eau le :</string>
 
     <!-- Elements UI Parametres de température -->
     <string name="minTemp">Min</string>
