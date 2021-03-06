@@ -1,7 +1,6 @@
 package fr.unilim.iut.aqualala;
 
 import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.os.*
 import android.view.View
@@ -27,7 +26,6 @@ import java.util.concurrent.Executors
 **/
 
 class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
-    lateinit var wakeLock: PowerManager.WakeLock
     lateinit var temperature : Temperature
     lateinit var valeurView: TextView
     lateinit var commentaireView: TextView
@@ -45,24 +43,11 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         btnNeunoeil.setOnClickListener(this)
         btn_courbes.setOnClickListener(this)
 
-        wakeLock =
-            (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
-                newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyApp::MyWakelockTag").apply {
-                    acquire()
-                }
-            }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
                 window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
 
-        var notification =  Notification(
-            NOTIFICATION_ID_TEMPERATURE,
-            CHANNEL_TEMPERATURE,
-            TemperatureControlleur::class.java,
-            this.applicationContext
-        )
         var handler = Handler(Looper.getMainLooper())
         val runnable: Runnable = object : Runnable {
             override fun run() {
@@ -71,23 +56,8 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                     var parametresTemperature = ParametreManager().obtenirParametres()
                     val periode = parametresTemperature.periodeGetTemp
                     handler.post {
-                        notification.createNotificationChannel(
-                            getString(R.string.channel_temperature_name),
-                            getString(R.string.channel_temperature_description),
-                            NotificationManager.IMPORTANCE_DEFAULT
-                        )
-
-                        if (temperature.obtenirValiditeEau(parametresTemperature)!=0) {
-                            notification.sendNotification(
-                                R.mipmap.neunoeil,
-                                getString(R.string.temperature_Alerte_Titre),
-                                temperature.commentaireSurLaValiditeTemperature(parametresTemperature),
-                                NotificationCompat.PRIORITY_DEFAULT
-                            )
-                        }
                         lierViewAvecTemperature(temperature, parametresTemperature)
-                        // !!!!!!!!!!!!!!!!!!! A changer en 20 minutes
-                        handler.postDelayed(this, periode*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
+                        handler.postDelayed(this, periode*200*1000.toLong()) //délai en miliseconde : 1000ms = 1s
                     }
                 }
             }
@@ -104,8 +74,6 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                     WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         )
-
-        wakeLock.release()
     }
 
     fun initView(){

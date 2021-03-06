@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
@@ -16,6 +15,7 @@ import androidx.core.content.ContextCompat
 import fr.unilim.iut.aqualala.config.*
 import fr.unilim.iut.aqualala.model.Notification
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
+import fr.unilim.iut.aqualala.model.sql.TemperatureManager
 import java.util.concurrent.Executors
 
 class MainMenu : AppCompatActivity(), View.OnClickListener {
@@ -47,33 +47,55 @@ class MainMenu : AppCompatActivity(), View.OnClickListener {
         btnEau.setOnClickListener(this)
         btnTexteEau.setOnClickListener(this)
 
-        var notification =  Notification(
+        var notificationEau =  Notification(
             NOTIFICATION_ID_EAU,
             CHANNEL_EAU,
             MainMenu::class.java,
+            this.applicationContext
+        )
+        var notificationTemperature =  Notification(
+            NOTIFICATION_ID_TEMPERATURE,
+            CHANNEL_TEMPERATURE,
+            TemperatureControlleur::class.java,
             this.applicationContext
         )
         var handler = Handler(Looper.getMainLooper())
         val runnable: Runnable = object : Runnable {
             override fun run() {
                 Executors.newSingleThreadExecutor().execute {
+                    var temperature = TemperatureManager().obtenirDerniereTemperature()
                     var parametresTemperature = ParametreManager().obtenirParametres()
+                    val periode = parametresTemperature.periodeGetTemp
                     handler.post {
-                        notification.createNotificationChannel(
+                        notificationEau.createNotificationChannel(
                             getString(R.string.channel_eau_name),
                             getString(R.string.channel_eau_description),
                             NotificationManager.IMPORTANCE_DEFAULT
                         )
+                        notificationTemperature.createNotificationChannel(
+                            getString(R.string.channel_temperature_name),
+                            getString(R.string.channel_temperature_description),
+                            NotificationManager.IMPORTANCE_DEFAULT
+                        )
+
+                        if (temperature.obtenirValiditeEau(parametresTemperature)!=0) {
+                            notificationTemperature.sendNotification(
+                                R.mipmap.neunoeil,
+                                getString(R.string.temperature_Alerte_Titre),
+                                temperature.commentaireSurLaValiditeTemperature(parametresTemperature),
+                                NotificationCompat.PRIORITY_DEFAULT
+                            )
+                        }
 
                         if (!parametresTemperature.waterLevel) {
-                            notification.sendNotification(
+                            notificationEau.sendNotification(
                                 R.mipmap.neunoeil,
                                 getString(R.string.eau_Alerte_Titre),
                                 getString((R.string.description_Eau_Alerte)),
                                 NotificationCompat.PRIORITY_DEFAULT
                             )
                         }
-                        handler.postDelayed(this, parametresTemperature.periodeGetTemp*3*1000.toLong()) //délai en miliseconde : 1000ms = 1s
+                        handler.postDelayed(this, periode*200*1000.toLong()) //délai en miliseconde : 1000ms = 1s
                     }
                 }
             }
