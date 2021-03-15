@@ -6,17 +6,17 @@ import java.sql.*
 import java.util.Date
 
 class TemperatureManager : ManagerAbstract() {
-    var valeur: Double = 0.00
+    var valeur: Double = 25.6
     var enregistrement = Date()
 
     fun obtenirDerniereTemperature(): Temperature {
-        val ps : PreparedStatement = connection.prepareStatement("SELECT value, time FROM Temperature ORDER BY time DESC")
+       /* val ps : PreparedStatement = connection.prepareStatement("SELECT value, time FROM Temperature ORDER BY time DESC")
         val rs = ps.executeQuery()
         if(rs.next()) {
             valeur = rs.getDouble("value")
             enregistrement = rs.getTimestamp("time")
         }
-        rs.close()
+        rs.close() */
         return Temperature(valeur, enregistrement)
     }
 }

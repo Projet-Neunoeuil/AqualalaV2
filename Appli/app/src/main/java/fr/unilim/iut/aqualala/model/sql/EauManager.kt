@@ -9,12 +9,12 @@ class EauManager: ManagerAbstract() {
     var derniereDateChangementEau = Date()
 
     fun obtenirDernierDateChangementEau(): Eau {
-        val ps :PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water ORDER BY lastChange DESC;")
+        /*val ps :PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water ORDER BY lastChange DESC;")
         val rs = ps.executeQuery()
 
         if (rs.next()) {
             derniereDateChangementEau = rs.getTimestamp("lastChange")
-        }
+        } */
         return Eau(derniereDateChangementEau)
     }
 }

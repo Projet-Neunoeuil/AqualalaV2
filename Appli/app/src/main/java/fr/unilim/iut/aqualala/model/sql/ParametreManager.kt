@@ -6,16 +6,16 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 class ParametreManager: ManagerAbstract(){
-    var tempMin = 0.00
-    var tempMax = 0.00
+    var tempMin = 22.00
+    var tempMax = 27.00
     var heureBlanc = Date()
     var heureBleu = Date()
     var niveauEau = false
-    var intervalTemp = 0
-    var intervalChangementEau = 0
+    var intervalTemp = 1
+    var intervalChangementEau = 3
 
     fun obtenirParametres(): Parametres {
-        val ps: PreparedStatement = connection.prepareStatement(
+       /* val ps: PreparedStatement = connection.prepareStatement(
             "SELECT minTemp, maxTemp, whiteTime, blueTime, waterLevel, periodGetTemp, periodChangeWater FROM Parameters")
         val rs = ps.executeQuery()
 
@@ -28,7 +28,7 @@ class ParametreManager: ManagerAbstract(){
             intervalTemp = rs.getInt("periodGetTemp")
             intervalChangementEau = rs.getInt("periodChangeWater")
         }
-        rs.close()
+        rs.close() */
 
         return Parametres(
             tempMin,
@@ -42,83 +42,88 @@ class ParametreManager: ManagerAbstract(){
     }
 
     fun enregistrerParametresTemperature(tempMin : Double, tempMax : Double, periode : Int): Boolean {
-        val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET minTemp=?, maxTemp=?, periodGetTemp=?")
+        /*val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET minTemp=?, maxTemp=?, periodGetTemp=?")
         ps.setDouble(1,tempMin)
         ps.setDouble(2, tempMax)
         ps.setInt(3,periode)
 
         val reussi = ps.executeUpdate()
         ps.close()
-        return reussi > 0
+        return reussi > 0*/
+        return false
     }
 
     fun enregistrerParametresEclairage(heureBlanc : String, heureBleu : String): Boolean {
-        val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET whiteTime=?, blueTime=?")
+        /* val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET whiteTime=?, blueTime=?")
         ps.setTime(1, Time(SimpleDateFormat("HH:mm").parse(heureBlanc).time))
         ps.setTime(2, Time(SimpleDateFormat("HH:mm").parse(heureBleu).time))
 
         val reussi = ps.executeUpdate()
         ps.close()
-        return reussi > 0
+        return reussi > 0 */ return false
     }
 
     fun enregistrerParametresEau(periodChangeWater: Int): Boolean {
-        val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET periodChangeWater=?")
+       /* val ps : PreparedStatement = connection.prepareStatement("UPDATE Parameters SET periodChangeWater=?")
         ps.setInt(1, periodChangeWater)
 
         val reussi = ps.executeUpdate()
         ps.close()
-        return reussi > 0
+        return reussi > 0*/ return false
     }
 
     fun enregistrerEau(derniereDateChangementEau:String) :Boolean{
-        val ps:PreparedStatement=connection.prepareStatement("INSERT INTO `Water` (`lastChange`) VALUES (?);")
+       /* val ps:PreparedStatement=connection.prepareStatement("INSERT INTO `Water` (`lastChange`) VALUES (?);")
         ps.setString(1, derniereDateChangementEau)
 
         val reussi=ps.execute()
         ps.close()
-        return reussi
+        return reussi */ return false
     }
 
     fun obtenirParametresTemperature():Array<Double?>{
-        var ps: PreparedStatement =connection.prepareStatement("SELECT minTemp, maxTemp,periodGetTemp FROM Parametres;")
+       /* var ps: PreparedStatement =connection.prepareStatement("SELECT minTemp, maxTemp,periodGetTemp FROM Parametres;")
 
         val rs=ps.executeQuery()
         val minMaxPeriodeTemperature: Array<Double?> = arrayOfNulls<Double>(3)
         minMaxPeriodeTemperature[0]=rs.getDouble("minTemp")
         minMaxPeriodeTemperature[1]=rs.getDouble("maxTemp")
         minMaxPeriodeTemperature[1]=rs.getDouble("periodGetTemp")
-        return minMaxPeriodeTemperature
+        return minMaxPeriodeTemperature*/
+        return arrayOf(22.5,23.4)
     }
 
     fun obtenirParametresLumiere():Array<Date?>{
-        var ps: PreparedStatement =connection.prepareStatement("SELECT whiteTime, blueTime FROM Parametres;")
+        /*var ps: PreparedStatement =connection.prepareStatement("SELECT whiteTime, blueTime FROM Parametres;")
 
         val rs=ps.executeQuery()
         val blancNoirTemps: Array<Date?> = arrayOfNulls<Date>(2)
         blancNoirTemps[0]=rs.getTimestamp("minTemp")
         blancNoirTemps[1]=rs.getTimestamp("maxTemp")
-        return blancNoirTemps
+        return blancNoirTemps*/
+        return arrayOfNulls(3)
     }
 
     fun obtenirParametresEau():Int{
-        var ps: PreparedStatement = connection.prepareStatement("SELECT periodChangeWater FROM Parameters ;")
+       /* var ps: PreparedStatement = connection.prepareStatement("SELECT periodChangeWater FROM Parameters ;")
 
         val rs=ps.executeQuery()
         rs.next()
         val frequenceChangeWater=rs.getInt("periodChangeWater")
         ps.close()
-        return frequenceChangeWater
+        return frequenceChangeWater*/
+        return 3
     }
 
     fun obtenirDateEau():Date{
-        var ps: PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water order BY waterid DESC;")
+       /* var ps: PreparedStatement = connection.prepareStatement("SELECT lastChange FROM Water order BY waterid DESC;")
 
         val rs=ps.executeQuery()
         rs.next()
         val derniereDateChangementEau=rs.getTimestamp("lastChange")
         ps.close()
-        return derniereDateChangementEau
+        return derniereDateChangementEau */
+        return Date()
     }
 
 }

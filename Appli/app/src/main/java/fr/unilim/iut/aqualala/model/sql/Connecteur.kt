@@ -2,6 +2,7 @@ package fr.unilim.iut.aqualala.model.sql
 
 import android.os.Handler
 import android.os.Looper
+import com.google.firebase.firestore.FirebaseFirestore
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -9,7 +10,7 @@ import java.util.concurrent.Executors
 import kotlin.jvm.Throws
 
 class Connecteur {
-    private var connector: Connection? = null
+    /* private var connector: Connection? = null
 
     @Throws (SQLException::class, ClassNotFoundException::class)
     fun connecter(
@@ -48,5 +49,5 @@ class Connecteur {
         } catch (e: SQLException) {
             false
         }
-    }
+    } */
 }

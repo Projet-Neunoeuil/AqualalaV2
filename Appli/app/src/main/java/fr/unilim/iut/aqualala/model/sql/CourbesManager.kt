@@ -17,7 +17,7 @@ class CourbesManager : ManagerAbstract() {
 
 
     fun obtenirCourbeJournee(graph: GraphView) : GraphView{
-        var ps : PreparedStatement = connection.prepareStatement("SELECT value, hour FROM LastDay ORDER BY hour ASC")
+        /*var ps : PreparedStatement = connection.prepareStatement("SELECT value, hour FROM LastDay ORDER BY hour ASC")
         var rs = ps.executeQuery()
         var x = 0.0
         var datalist: ArrayList<DataPoint> = ArrayList()
@@ -70,10 +70,11 @@ class CourbesManager : ManagerAbstract() {
         graph.gridLabelRenderer.numHorizontalLabels = numberOfPoint
         graph.viewport.isXAxisBoundsManual = true
         graph.title = "Evolution de la température sur les ${datalist.size} dernières heures"
+        return graph */
         return graph
     }
     fun obtenirCourbeSemaine(graph : GraphView): GraphView{
-        var ps : PreparedStatement = connection.prepareStatement("SELECT value, day FROM LastWeek ORDER BY day ASC")
+        /*var ps : PreparedStatement = connection.prepareStatement("SELECT value, day FROM LastWeek ORDER BY day ASC")
         var rs = ps.executeQuery()
         var x = 0.0
         var datalist: ArrayList<DataPoint> = ArrayList()
@@ -121,11 +122,11 @@ class CourbesManager : ManagerAbstract() {
         graph.viewport.maxXAxisSize = datalist.size.toDouble()
         graph.gridLabelRenderer.numHorizontalLabels = datalist.size
         graph.viewport.isXAxisBoundsManual = true
-        graph.title = "Evolution de la température sur les ${datalist.size} derniers jours"
+        graph.title = "Evolution de la température sur les ${datalist.size} derniers jours"*/
         return graph
     }
     fun obtenirCourbeMois(graph : GraphView): GraphView {
-        var ps : PreparedStatement = connection.prepareStatement("SELECT value, day FROM LastMonth ORDER BY day ASC")
+        /*var ps : PreparedStatement = connection.prepareStatement("SELECT value, day FROM LastMonth ORDER BY day ASC")
         var rs = ps.executeQuery()
         var x = 0.0
         var datalist: ArrayList<DataPoint> = ArrayList()
@@ -177,12 +178,12 @@ class CourbesManager : ManagerAbstract() {
         }
         graph.gridLabelRenderer.numHorizontalLabels = numberOfPoint
         graph.viewport.isXAxisBoundsManual = true
-        graph.title = "Evolution de la température sur les ${datalist.size} derniers jours"
+        graph.title = "Evolution de la température sur les ${datalist.size} derniers jours" */
         return graph
     }
 
     fun obtenirCourbeAnnee(graph : GraphView): GraphView {
-        var ps : PreparedStatement = connection.prepareStatement("SELECT value, month FROM LastYear ORDER BY month ASC")
+        /*var ps : PreparedStatement = connection.prepareStatement("SELECT value, month FROM LastYear ORDER BY month ASC")
         var rs = ps.executeQuery()
         var x = 0.0
         var datalist: ArrayList<DataPoint> = ArrayList()
@@ -234,7 +235,7 @@ class CourbesManager : ManagerAbstract() {
         }
         graph.gridLabelRenderer.numHorizontalLabels = numberOfPoint
         graph.viewport.isXAxisBoundsManual = true
-        graph.title = "Evolution de la température sur les ${datalist.size} derniers mois"
+        graph.title = "Evolution de la température sur les ${datalist.size} derniers mois"*/
         return graph
     }
 }
