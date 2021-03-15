@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "643447703063",
+    "project_id": "aqualala-2f641",
+    "storage_bucket": "aqualala-2f641.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643447703063:android:27cbef25aeca7322dd3e52",
+        "android_client_info": {
+          "package_name": "fr.unilim.iut.aqualala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643447703063-qad939hnenbhv6t2dppuimc873sb5t1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtpWG7XgnHsEsLi9C_SSLHfrw0BKXBjEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643447703063-qad939hnenbhv6t2dppuimc873sb5t1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
