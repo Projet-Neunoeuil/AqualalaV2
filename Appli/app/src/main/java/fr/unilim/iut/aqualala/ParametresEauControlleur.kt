@@ -36,7 +36,9 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
         val btnValiderEclair = findViewById<Button>(R.id.btnValiderFrequence)
         val btnRetourEclair = findViewById<Button>(R.id.btnRetourEau)
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        val btnMenu = findViewById<TextView>(R.id.btnMenu)
         btnNeunoeil.setOnClickListener(this)
+        btnMenu.setOnClickListener(this)
         //Récupérer la liste de période de changement d'eau
         var array = Arrays()
         var listePeriodeChangementEau = array.listePeriodeChangeWater
@@ -85,7 +87,7 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@ParametresEauControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()

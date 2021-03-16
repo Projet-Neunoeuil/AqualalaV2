@@ -15,7 +15,6 @@ import kotlin.collections.ArrayList
 
 class CourbesManager : ManagerAbstract() {
 
-
     fun obtenirCourbeJournee(graph: GraphView) : GraphView{
         var ps : PreparedStatement = connection.prepareStatement("SELECT value, hour FROM LastDay ORDER BY hour ASC")
         var rs = ps.executeQuery()

@@ -4,6 +4,7 @@
 
     <!-- Titre des pages -->
     <string name="titre_menu">Menu</string>
+    <string name="titre_retour_menu">Retour au menu</string>
     <string name="titre_temperature">Température de l\'eau</string>
     <string name="titre_changementEau">Changement d\'eau</string>
     <string name="parametres">Paramètres</string>
@@ -36,7 +37,7 @@
     <!-- Elements UI Température -->
     <string name="default_info_temp">La température est</string>
     <string name="tempsTemperature">Température mesurée à</string>
-    <string name="valeurTemperature">0°C</string>
+    <string name="valeurTemperature">°C</string>
 
     <!-- Elements UI Eau -->
     <string name="derniere_date_changementEau">Définir la date du dernier changement d\'eau :</string>

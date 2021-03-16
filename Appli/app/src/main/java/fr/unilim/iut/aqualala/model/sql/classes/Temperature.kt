@@ -21,8 +21,8 @@ class Temperature (val valeur : Double, val date : Date) {
      fun commentaireSurLaValiditeTemperature(parametres: Parametres): String {
         when(obtenirValiditeEau(parametres)) {
             BASSE -> return "La température est anormalement basse"
-            HAUTE -> return "La temperature est anormalement haute"
-            IDEALE -> return "La temperature est idéale"
+            HAUTE -> return "La température est anormalement haute"
+            IDEALE -> return "La température est idéale"
         }
         return "Erreur"
     }

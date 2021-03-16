@@ -15,6 +15,7 @@ import fr.unilim.iut.aqualala.model.*
 import fr.unilim.iut.aqualala.model.sql.Connecteur
 import fr.unilim.iut.aqualala.model.sql.ParametreManager
 import fr.unilim.iut.aqualala.model.sql.classes.Parametres
+import org.w3c.dom.Text
 import java.sql.Connection
 import java.util.concurrent.Executors
 
@@ -23,6 +24,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     lateinit var blueTime : Spinner
     lateinit var errParamEclair: TextView
     lateinit var parametreManager : ParametreManager
+    lateinit var btnMenu : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         val btnRetourEclair = findViewById<Button>(R.id.btnRetourEclair)
         val array = Arrays()
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-        btnNeunoeil.setOnClickListener(this)
+
         val listeHeure = array.listeHeure
         var adapterHeureBleu : ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_spinner_item, listeHeure)
         adapterHeureBleu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -58,6 +60,8 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         }
         btnValiderEclair.setOnClickListener(this)
         btnRetourEclair.setOnClickListener(this)
+        btnNeunoeil.setOnClickListener(this)
+        btnMenu.setOnClickListener(this)
     }
 
     private fun mettreValeurParDefaut(parametre: Parametres) {
@@ -92,7 +96,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@ParametresEclairageControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()
@@ -103,5 +107,6 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
         whiteTime = findViewById(R.id.heureBlanc)
         blueTime = findViewById(R.id.heureBleu)
         errParamEclair = findViewById(R.id.errParamEclair)
+        btnMenu = findViewById(R.id.btnMenu)
     }
 }

@@ -22,6 +22,8 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
         val btnParamEclair = findViewById<Button>(R.id.btnParamEclair)
         val btnParamEau = findViewById<Button>(R.id.btnParamEau)
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        val btnMenu = findViewById<TextView>(R.id.btnMenu)
+        btnMenu.setOnClickListener(this)
         btnParamEau.setOnClickListener(this)
         btnParamTemp.setOnClickListener(this)
         btnParamEclair.setOnClickListener(this)
@@ -34,7 +36,7 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@ParametresControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()

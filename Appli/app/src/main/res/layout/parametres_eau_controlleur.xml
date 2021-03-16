@@ -28,6 +28,19 @@
         </FrameLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/btnMenu"
+        android:layout_width="290dp"
+        android:layout_height="44dp"
+        android:fontFamily="@font/verdana"
+        android:gravity="center"
+        android:text="@string/titre_retour_menu"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/neunoeil"
+        app:layout_constraintEnd_toStartOf="@+id/neunoeil"
+        app:layout_constraintTop_toTopOf="@+id/neunoeil" />
+
     <ImageButton
         android:id="@+id/neunoeil"
         android:layout_width="wrap_content"

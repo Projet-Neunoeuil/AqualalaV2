@@ -34,9 +34,9 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
         }
         setContentView(R.layout.parametres_temperature_controlleur)
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
-        btnNeunoeil.setOnClickListener(this)
         val btnValiderTemp = findViewById<Button>(R.id.btnValiderTemp)
         val btnRetourTemp = findViewById<Button>(R.id.btnRetourTemp)
+        val btnRetour = findViewById<TextView>(R.id.btnMenu)
         val array = Arrays()
         val listeTemperature = array.listeTemperature
         val listePeriode = array.listeDelai
@@ -64,6 +64,8 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
 
         btnValiderTemp.setOnClickListener(this)
         btnRetourTemp.setOnClickListener(this)
+        btnNeunoeil.setOnClickListener(this)
+        btnRetour.setOnClickListener(this)
     }
 
     private fun mettreValeurParDefaut(parametreManager: ParametreManager) {
@@ -106,7 +108,7 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@ParametresTemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()

@@ -11,6 +11,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.jjoe64.graphview.GraphView
 import fr.unilim.iut.aqualala.model.sql.CourbesManager
@@ -30,6 +31,8 @@ class CourbeTempJour : AppCompatActivity(), View.OnClickListener {
         val graph: GraphView = findViewById(R.id.graph)
         val btnRetour : Button = findViewById(R.id.btnRetour)
         val neunoeil : ImageButton = findViewById(R.id.neunoeil)
+        val btnMenu = findViewById<TextView>(R.id.btnMenu)
+        btnMenu.setOnClickListener(this)
         btnRetour.setOnClickListener(this)
         neunoeil.setOnClickListener(this)
         graph.visibility = View.VISIBLE
@@ -53,7 +56,7 @@ class CourbeTempJour : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@CourbeTempJour, MainMenu::class.java)
                 startActivity(intent)
                 finish()

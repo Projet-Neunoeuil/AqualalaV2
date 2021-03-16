@@ -34,6 +34,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     lateinit var msgErreurView: TextView
     lateinit var btnNeunoeil : ImageButton
     lateinit var btn_courbes : Button
+    lateinit var btn_menu : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
 
         btnNeunoeil.setOnClickListener(this)
         btn_courbes.setOnClickListener(this)
+        btn_menu.setOnClickListener(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
                 window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
@@ -84,6 +86,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
         msgErreurView = findViewById(R.id.erreur)
         btnNeunoeil = findViewById(R.id.neunoeil)
         btn_courbes = findViewById(R.id.btn_courbes)
+        btn_menu = findViewById(R.id.btnMenu)
     }
 
     private fun lierViewAvecTemperature(temperature: Temperature, parametre: Parametres) {
@@ -110,7 +113,7 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@TemperatureControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()

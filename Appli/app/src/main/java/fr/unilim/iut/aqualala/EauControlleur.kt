@@ -54,6 +54,8 @@ class EauControlleur : AppCompatActivity(), View.OnClickListener {
         }
         runnable.run()
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        val btnMenu = findViewById<TextView>(R.id.btnMenu)
+        btnMenu.setOnClickListener(this)
         btnNeunoeil.setOnClickListener(this)
         boutonValide.setOnClickListener(this)
     }
@@ -74,7 +76,7 @@ class EauControlleur : AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@EauControlleur, MainMenu::class.java)
                 startActivity(intent)
                 finish()

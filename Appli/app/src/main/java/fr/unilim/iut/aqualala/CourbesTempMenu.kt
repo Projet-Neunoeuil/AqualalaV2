@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
@@ -31,6 +32,8 @@ class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
         }
         val btnNeunoeil = findViewById<ImageButton>(R.id.neunoeil)
+        val btnMenu = findViewById<TextView>(R.id.btnMenu)
+        btnMenu.setOnClickListener(this)
         btnNeunoeil.setOnClickListener(this)
     }
 
@@ -61,7 +64,7 @@ class CourbesTempMenu : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
-            R.id.neunoeil -> {
+            R.id.neunoeil, R.id.btnMenu -> {
                 val intent = Intent(this@CourbesTempMenu, MainMenu::class.java)
                 startActivity(intent)
                 finish()
