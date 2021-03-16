@@ -52,7 +52,7 @@
     <string name="blueTime">Bleu</string>
 
     <!-- Elements UI Parametres d'eau -->
-    <string name="chgt_eau_frequence">Modifier la fréquence du changement d\'eau</string>
+    <string name="chgt_eau_frequence">Nombre de jours entre chaque changement d\'eau : </string>
 
     <!-- Notifications -->
         <!-- Temperature -->
