@@ -43,9 +43,10 @@
     <string name="prochaine_date_changementEau">Prévoyez à changer l\'eau le :</string>
 
     <!-- Elements UI Parametres de température -->
-    <string name="minTemp">Min</string>
-    <string name="maxTemp">Max</string>
+    <string name="minTemp">Min (°C)</string>
+    <string name="maxTemp">Max (°C)</string>
     <string name="delaiRecup">Période</string>
+    <string name="valrecup">(minutes)</string>
 
     <!-- Elements UI Parametres d'éclairage -->
     <string name="whiteTime">Blanc</string>
