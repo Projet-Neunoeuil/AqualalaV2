@@ -39,8 +39,8 @@
     <string name="valeurTemperature">0°C</string>
 
     <!-- Elements UI Eau -->
-    <string name="derniere_date_changementEau">Définir la dernière date du changement d\'eau :</string>
-    <string name="prochaine_date_changementEau">Prévoyez à changer l\'eau le :</string>
+    <string name="derniere_date_changementEau">Définir la date du dernier changement d\'eau :</string>
+    <string name="prochaine_date_changementEau">Prévoyez de changer l\'eau le :</string>
 
     <!-- Elements UI Parametres de température -->
     <string name="minTemp">Min (°C)</string>
@@ -49,8 +49,9 @@
     <string name="valrecup">(minutes)</string>
 
     <!-- Elements UI Parametres d'éclairage -->
-    <string name="whiteTime">Blanc</string>
-    <string name="blueTime">Bleu</string>
+    <string name="lib_eclair">Heure à laquelle la lumière deviendra</string>
+    <string name="whiteTime">Blanche</string>
+    <string name="blueTime">Bleue</string>
 
     <!-- Elements UI Parametres d'eau -->
     <string name="chgt_eau_frequence">Nombre de jours entre chaque changement d\'eau : </string>

@@ -68,35 +68,53 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.233" />
 
-    <TextView
-        android:id="@+id/derniereDateChangementEau"
-        android:layout_width="98dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="12dp"
-        android:onClick="viewSelectionerDate"
-        app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="199dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_weight=".28"
+        android:background="@drawable/background"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.362">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="24dp"
-        android:layout_height="21dp"
-        app:layout_constraintBottom_toBottomOf="@+id/derniereDateChangementEau"
-        app:layout_constraintStart_toEndOf="@+id/derniereDateChangementEau"
-        app:layout_constraintTop_toTopOf="@+id/derniereDateChangementEau"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/calendar" />
+        <TextView
+            android:id="@+id/derniereDateChangementEau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:onClick="viewSelectionerDate"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/calendar" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="320dp"
         android:layout_height="47dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="112dp"
         android:text="@string/prochaine_date_changementEau"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/derniereDateChangementEau" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
     <TextView
         android:id="@+id/prochainChangementEau"

@@ -17,7 +17,8 @@ import java.util.concurrent.Executors
 
 class CourbeTempAn : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor =
                 ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
