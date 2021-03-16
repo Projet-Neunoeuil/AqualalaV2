@@ -48,8 +48,9 @@
     <string name="delaiRecup">Période</string>
 
     <!-- Elements UI Parametres d'éclairage -->
-    <string name="whiteTime">Blanc</string>
-    <string name="blueTime">Bleu</string>
+    <string name="lib_eclair">Heure à laquelle la lumière deviendra</string>
+    <string name="whiteTime">Blanche</string>
+    <string name="blueTime">Bleue</string>
 
     <!-- Elements UI Parametres d'eau -->
     <string name="chgt_eau_frequence">Modifier la fréquence du changement d\'eau</string>
