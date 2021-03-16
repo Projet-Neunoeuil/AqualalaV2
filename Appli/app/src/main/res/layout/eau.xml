@@ -9,7 +9,7 @@
     android:background="@color/fond"
     tools:context=".EauControlleur">
 
-    <LinearLayout
+    <!--LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
-    </LinearLayout>
+    </LinearLayout-->
 
     <ImageButton
         android:id="@+id/neunoeil"
@@ -64,6 +64,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnValiderChangementEau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.233" />
@@ -87,6 +88,7 @@
         <TextView
             android:id="@+id/derniereDateChangementEau"
             android:layout_width="match_parent"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:onClick="viewSelectionerDate"
@@ -110,6 +112,7 @@
         android:layout_width="320dp"
         android:layout_height="47dp"
         android:layout_marginTop="112dp"
+        android:textColor="@color/white"
         android:text="@string/prochaine_date_changementEau"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.0"
@@ -120,11 +123,13 @@
         android:id="@+id/prochainChangementEau"
         android:layout_width="101dp"
         android:layout_height="20dp"
-        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnValiderChangementEau"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintHorizontal_bias="0.506"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.096" />
 
     <Button
         android:id="@+id/btnValiderChangementEau"
