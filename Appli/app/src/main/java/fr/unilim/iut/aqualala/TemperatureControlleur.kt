@@ -2,6 +2,7 @@ package fr.unilim.iut.aqualala;
 
 import android.app.NotificationManager
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.*
 import android.view.View
 import android.view.WindowManager
@@ -31,13 +32,13 @@ class TemperatureControlleur : AppCompatActivity(), View.OnClickListener {
     lateinit var commentaireView: TextView
     lateinit var tempsView: TextView
     lateinit var msgErreurView: TextView
-    lateinit var connection : Connection
     lateinit var btnNeunoeil : ImageButton
     lateinit var btn_courbes : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.temperature)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initView()
 
         btnNeunoeil.setOnClickListener(this)

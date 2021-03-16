@@ -1,6 +1,7 @@
 package fr.unilim.iut.aqualala
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,8 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_eclairage_controlleur)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // Si le téléphone est compatible alors
             window.navigationBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du bas en orange
             window.statusBarColor = ContextCompat.getColor(this, R.color.orange); // Changer la barre du haut en orange
@@ -75,6 +78,7 @@ class ParametresEclairageControlleur : AppCompatActivity(), View.OnClickListener
                             Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this@ParametresEclairageControlleur, ParametresControlleur::class.java)
                             startActivity(intent)
+                            finish()
                         } else
                         {
                             Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()

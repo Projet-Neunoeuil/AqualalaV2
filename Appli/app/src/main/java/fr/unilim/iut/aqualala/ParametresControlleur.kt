@@ -1,6 +1,7 @@
 package fr.unilim.iut.aqualala
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,8 @@ class ParametresControlleur : AppCompatActivity(), View.OnClickListener  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.parametres_controlleur)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val btnParamTemp = findViewById<Button>(R.id.btnParamTemp)
         val btnParamEclair = findViewById<Button>(R.id.btnParamEclair)
