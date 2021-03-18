@@ -205,6 +205,7 @@
         android:layout_height="53dp"
         android:fontFamily="@font/nunito"
         android:text="@string/erreur"
+        android:gravity="center_horizontal"
         android:textColor="@color/rose_pastel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
