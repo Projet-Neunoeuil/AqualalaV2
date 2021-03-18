@@ -92,10 +92,9 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                     }
                     Handler(Looper.getMainLooper()).post {
                         if(bool) {
-                            Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_LONG).show()
                             val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
                             startActivity(intent)
-                            finish()
                         } else
                         {
                             Toast.makeText(this,"Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()

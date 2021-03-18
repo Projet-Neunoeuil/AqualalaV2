@@ -71,11 +71,10 @@ class ParametresEauControlleur : AppCompatActivity(), View.OnClickListener {
                         Executors.newSingleThreadExecutor().execute {
                             if(reussi){
                                 runOnUiThread {
-                                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_LONG).show()
                                 }
                                 val intent = Intent(this@ParametresEauControlleur, ParametresControlleur::class.java)
                                 startActivity(intent)
-                                finish()
                             }
                             else Toast.makeText(this, "Erreur lors de l'insertion des données", Toast.LENGTH_LONG).show()
                         }
