@@ -84,7 +84,7 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                 var bool : Boolean
                 Executors.newSingleThreadExecutor().execute {
                     if(minTemp.selectedItem.toString().toDouble() >= maxTemp.selectedItem.toString().toDouble()) {
-                        errParamTemp.text = "Erreur, données inversée, veuillez recommencer"
+                        errParamTemp.text = "Erreur, données inversées, veuillez recommencer"
                         bool = false
                     } else
                     {
@@ -92,7 +92,7 @@ class ParametresTemperatureControlleur : AppCompatActivity(), View.OnClickListen
                     }
                     Handler(Looper.getMainLooper()).post {
                         if(bool) {
-                            Toast.makeText(this, "Les données ont bien été enregistrée !", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Les données ont bien été enregistrées !", Toast.LENGTH_LONG).show()
                             val intent = Intent(this@ParametresTemperatureControlleur, ParametresControlleur::class.java)
                             startActivity(intent)
                         } else
