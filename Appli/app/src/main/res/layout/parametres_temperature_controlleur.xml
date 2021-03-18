@@ -8,7 +8,7 @@
     android:screenOrientation="portrait"
     tools:context=".ParametresTemperatureControlleur">
 
-    <LinearLayout
+    <!--LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +29,7 @@
             android:layout_height="match_parent">
 
         </FrameLayout>
-    </LinearLayout>
+    </LinearLayout-->
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -201,7 +201,7 @@
 
     <TextView
         android:id="@+id/errParamTemp"
-        android:layout_width="392dp"
+        android:layout_width="match_parent"
         android:layout_height="53dp"
         android:fontFamily="@font/nunito"
         android:text="@string/erreur"

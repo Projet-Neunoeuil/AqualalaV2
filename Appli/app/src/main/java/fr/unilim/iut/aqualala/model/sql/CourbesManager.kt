@@ -43,7 +43,7 @@ class CourbesManager : ManagerAbstract() {
             Toast.makeText(
                 graph.context,
                 "La température moyenne était de ${dataPoint.y}°C le ${format.format(hourlist[dataPoint.x])}",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
         }
         series.color = ContextCompat.getColor(graph.context, R.color.orange)
@@ -99,7 +99,7 @@ class CourbesManager : ManagerAbstract() {
             Toast.makeText(
                 graph.context,
                 "La température moyenne était de ${dataPoint.y}°C le ${format.format(hourlist[dataPoint.x])}",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
         }
         series.color = ContextCompat.getColor(graph.context, R.color.orange)
@@ -151,7 +151,7 @@ class CourbesManager : ManagerAbstract() {
             Toast.makeText(
                 graph.context,
                 "La température moyenne était de ${dataPoint.y}°C le ${format.format(hourlist[dataPoint.x])}",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
         }
         series.color = ContextCompat.getColor(graph.context, R.color.orange)
@@ -208,7 +208,7 @@ class CourbesManager : ManagerAbstract() {
             Toast.makeText(
                 graph.context,
                 "La température moyenne était de ${dataPoint.y}°C en ${format.format(hourlist[dataPoint.x])}",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
         }
         series.color = ContextCompat.getColor(graph.context, R.color.orange)
